@@ -12,11 +12,7 @@ using System.Windows.Forms;
 
 namespace PClienteEstudiante
 {
-    public class Estudiante
-    {
-        public int codigo { get; set; }
-        public string nombre { get; set; }
-    }
+    
     public partial class Form1 : Form
     {
         public Form1()
