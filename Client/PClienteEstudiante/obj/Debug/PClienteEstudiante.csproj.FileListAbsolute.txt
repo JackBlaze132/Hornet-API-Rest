@@ -1,0 +1,38 @@
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\PClienteEstudiante.exe.config
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\PClienteEstudiante.exe
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\PClienteEstudiante.pdb
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.AssemblyReference.cache
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.Form1.resources
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.Properties.Resources.resources
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.GenerateResource.cache
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.CoreCompileInputs.cache
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.exe
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.pdb
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\RestSharp.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Buffers.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Memory.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Numerics.Vectors.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Text.Encodings.Web.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Text.Json.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.ValueTuple.dll
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\RestSharp.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Buffers.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Memory.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Numerics.Vectors.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Text.Encodings.Web.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Text.Json.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.ValueTuple.xml
+D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PCliente.32295B28.Up2Date
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.AssemblyReference.cache
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.Estudiante.resources
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.Properties.Resources.resources
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.GenerateResource.cache
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.CoreCompileInputs.cache
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.exe
+C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.pdb
