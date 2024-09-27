@@ -29,10 +29,3 @@ D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEs
 D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\bin\Debug\System.ValueTuple.xml
 D:\Backup\Semestre B de 2024\DAE\Semana 7\PrototipoEstudiante\Cliente\PClienteEstudiante\PClienteEstudiante\obj\Debug\PCliente.32295B28.Up2Date
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.AssemblyReference.cache
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.Estudiante.resources
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.Properties.Resources.resources
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.GenerateResource.cache
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.csproj.CoreCompileInputs.cache
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.exe
-C:\Users\ederd\Documents\Unibague\Desarrollo aplicaciones empresariales\semana 7\Client\PClienteEstudiante\PClienteEstudiante\obj\Debug\PClienteEstudiante.pdb
