@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/estudiantes")
 public class StudentController {
 
-    private static String codigo = "2220201001";
+    private static String codigo = "2220201002";
 
 
     @RequestMapping(value = "/healthcheck")
