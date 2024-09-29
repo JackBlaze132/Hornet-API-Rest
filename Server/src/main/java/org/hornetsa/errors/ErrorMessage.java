@@ -1,4 +1,4 @@
-package com.example.MSStudent.errors;
+package org.hornetsa.errors;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
