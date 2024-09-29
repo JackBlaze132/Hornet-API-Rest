@@ -78,14 +78,52 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs" />
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="view\motorcycle\GUIAddMotorcycle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIAddMotorcycle.Designer.cs">
+      <DependentUpon>GUIAddMotorcycle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIDeleteMotorcycle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIDeleteMotorcycle.Designer.cs">
+      <DependentUpon>GUIDeleteMotorcycle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIEditMotorcycle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIEditMotorcycle.Designer.cs">
+      <DependentUpon>GUIEditMotorcycle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIListMotorcycle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIListMotorcycle.Designer.cs">
+      <DependentUpon>GUIListMotorcycle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\motorcycle\GUISearchMotorcycle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\motorcycle\GUISearchMotorcycle.Designer.cs">
+      <DependentUpon>GUISearchMotorcycle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIUpdateMotorcycle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\motorcycle\GUIUpdateMotorcycle.Designer.cs">
+      <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -96,6 +134,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\motorcycle\GUIAddMotorcycle.resx">
+      <DependentUpon>GUIAddMotorcycle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\motorcycle\GUIDeleteMotorcycle.resx">
+      <DependentUpon>GUIDeleteMotorcycle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\motorcycle\GUIEditMotorcycle.resx">
+      <DependentUpon>GUIEditMotorcycle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\motorcycle\GUIListMotorcycle.resx">
+      <DependentUpon>GUIListMotorcycle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\motorcycle\GUISearchMotorcycle.resx">
+      <DependentUpon>GUISearchMotorcycle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\motorcycle\GUIUpdateMotorcycle.resx">
+      <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -110,5 +166,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
