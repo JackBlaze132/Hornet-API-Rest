@@ -19,12 +19,15 @@ namespace PClienteEstudiante.view.motorcycle
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            foreach (var item in checkedListBox1.CheckedItems)
+            {
+                MessageBox.Show($"Seleccionaste: {item.ToString()}");
+            }
 
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
-            checkedListBox1.Visible = true;
         }
 
         private void dataGridMoto_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -39,7 +42,6 @@ namespace PClienteEstudiante.view.motorcycle
 
         private void label3_Click_1(object sender, EventArgs e)
         {
-            checkedListBox2.Visible = true;
         }
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
