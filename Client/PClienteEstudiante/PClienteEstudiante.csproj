@@ -122,6 +122,7 @@
     <Compile Include="view\motorcycle\GUIUpdateMotorcycle.Designer.cs">
       <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
     </Compile>
+    <Compile Include="view\motorcycle\Motorcycle.cs" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
