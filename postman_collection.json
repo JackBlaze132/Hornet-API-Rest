@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "82486e33-a57c-49e6-bcbc-4cf84a7b7542",
+		"name": "Motorcycle API rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37782017"
+	},
+	"item": [
+		{
+			"name": "Get Motorcycles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/motorcycles/get",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"motorcycles",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Motorcycles",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"brand\": \"mercedez\",\r\n    \"price\": 10,\r\n    \"snid\": \"41MZCZ202136\",\r\n    \"abs\": true,\r\n    \"forkType\": \"fork\",\r\n    \"helmetIncluded\": true,\r\n    \"arrivalDate\": \"2024-09-29T12:45:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/motorcycles/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"motorcycles",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Motorcycles by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/motorcycles/delete/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"motorcycles",
+						"delete",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Motorcycles by ID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"susuki\",\r\n    \"snid\": \"41MZCZ202137\",\r\n    \"forkType\": \"Upside-down\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8090/motorcycles/update/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"motorcycles",
+						"update",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Motorcycles by ID or SNID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8090/motorcycles/search?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"motorcycles",
+						"search"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						},
+						{
+							"key": "snid",
+							"value": "41MZCZ202135",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

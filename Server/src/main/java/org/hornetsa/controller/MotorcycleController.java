@@ -1,0 +1,127 @@
+package org.hornetsa.controller;
+
+
+import org.hornetsa.errors.ErrorMessage;
+import org.hornetsa.model.Motorcycle;
+import org.hornetsa.services.MotorcycleService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+@RestController
+@RequestMapping("/motorcycles")
+public class MotorcycleController {
+
+
+
+    @RequestMapping("/healthcheck")
+    public String healthCheck(){
+        return "motorcycle Service OK!";
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<ArrayList<Motorcycle>> getMotorcycle(){
+        MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+
+        ArrayList<Motorcycle> motorcycles = motorcycleService.getMotorcycles();
+
+        if (motorcycles == null || motorcycles.isEmpty()) return ResponseEntity.notFound().build();
+
+
+
+        return ResponseEntity.ok(motorcycles);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<Motorcycle> getMotorcycle(@RequestParam("id") Optional<Integer> id, @RequestParam("snid") Optional<String> snid){
+        MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+
+        Motorcycle motorcycle = motorcycleService.getMotorcycles(id.orElse(-1), snid.orElse(null)).stream().findFirst().orElse(null);
+
+        if (motorcycle == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(motorcycle);
+    }
+
+
+    @PostMapping("/add")
+    public ResponseEntity<Motorcycle> setId(@RequestBody Motorcycle motorcycle, BindingResult result){
+        if (result.hasErrors()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    this.formatMessage(result));
+        }
+
+        try {
+            MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+            motorcycleService.postMotorcycle(motorcycle);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(motorcycle);
+    }
+
+
+    /*@PostMapping(value = "/adds")
+    public void setId(@RequestParam("id") Optional<String> id){
+        this.id = id.isPresent() ? id.get() : this.id;
+    }*/
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteMotorcycle(@PathVariable("id") int id){
+        MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+        motorcycleService.deleteMotorcycle(id);
+        return ResponseEntity.ok("Motocicleta eliminada");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Motorcycle> updateMotorcycle(@PathVariable("id") int id,  @RequestBody Motorcycle motorcycle, BindingResult result){
+        if (result.hasErrors()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    this.formatMessage(result));
+        }
+
+        try {
+            MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+            motorcycleService.update(id, motorcycle);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(motorcycle);
+    }
+
+
+    private String formatMessage(BindingResult result){
+        List<Map<String,String>> errores = result.getFieldErrors().stream()
+                .map(err -> {
+                    Map<String,String> error = new HashMap<>();
+                    error.put(err.getField(), err.getDefaultMessage());
+                    return error;
+                }).collect(Collectors.toList());
+
+        ErrorMessage errorMessage = ErrorMessage.builder()
+                .code("01")
+                .mensajes(errores)
+                .build();
+
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = "";
+        try {
+            jsonString = mapper.writeValueAsString(errorMessage);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return jsonString;
+    }
+
+
+}
