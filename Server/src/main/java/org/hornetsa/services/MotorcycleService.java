@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MotorcycleService {
@@ -28,7 +30,15 @@ public class MotorcycleService {
         return motorcycles;
     }
 
-    public void setMotorcycle(Motorcycle motorcycle) {
+    public List<Motorcycle> getMotorcycles(int id, String snid) {
+        int defaultId = -1;
+        return this.motorcycles.stream()
+                .filter(m -> (id == defaultId || m.getId() == id)
+                        && (snid == null || m.getSnid().equals(snid)))
+                .collect(Collectors.toList());
+    }
+
+    public void postMotorcycle(Motorcycle motorcycle) {
         if (motorcycles == null) {
             motorcycles = new ArrayList<>();
         }
@@ -40,5 +50,24 @@ public class MotorcycleService {
 
         motorcycles.add(motorcycle);
         System.out.println(motorcycle);
+    }
+
+    public void deleteMotorcycle (int id){
+        motorcycles.removeIf(m -> m.getId() == id);
+    }
+    
+    public void update (int id, Motorcycle motorcycle){
+        Motorcycle motorcycleToUpdate = motorcycles.stream().filter(m -> m.getId() == id).findFirst().orElse(null);
+        if (motorcycleToUpdate == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró la motocicleta con el ID proporcionado");
+        }
+        motorcycleToUpdate.setBrand(motorcycle.getBrand());
+        motorcycleToUpdate.setPrice(motorcycle.getPrice());
+        motorcycleToUpdate.setSnid(motorcycle.getSnid());
+        motorcycleToUpdate.setAbsBrake(motorcycle.isAbsBrake());
+        motorcycleToUpdate.setForkType(motorcycle.getForkType());
+        motorcycleToUpdate.setHelmetIncluded(motorcycle.isHelmetIncluded());
+        motorcycleToUpdate.setArrivalDate(motorcycle.getArrivalDate());
+
     }
 }

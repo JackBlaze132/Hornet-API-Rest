@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/motorcycles")
 public class MotorcycleController {
 
-    private static String id = "1";
 
 
     @RequestMapping("/healthcheck")
@@ -40,6 +39,18 @@ public class MotorcycleController {
         return ResponseEntity.ok(motorcycles);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<Motorcycle> getMotorcycle(@RequestParam("id") Optional<Integer> id, @RequestParam("snid") Optional<String> snid){
+        MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+
+        Motorcycle motorcycle = motorcycleService.getMotorcycles(id.orElse(-1), snid.orElse(null)).stream().findFirst().orElse(null);
+
+        if (motorcycle == null) return ResponseEntity.notFound().build();
+
+        return ResponseEntity.ok(motorcycle);
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity<Motorcycle> setId(@RequestBody Motorcycle motorcycle, BindingResult result){
         if (result.hasErrors()){
@@ -49,7 +60,7 @@ public class MotorcycleController {
 
         try {
             MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
-            motorcycleService.setMotorcycle(motorcycle);
+            motorcycleService.postMotorcycle(motorcycle);
         } catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
@@ -62,6 +73,30 @@ public class MotorcycleController {
     public void setId(@RequestParam("id") Optional<String> id){
         this.id = id.isPresent() ? id.get() : this.id;
     }*/
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteMotorcycle(@PathVariable("id") int id){
+        MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+        motorcycleService.deleteMotorcycle(id);
+        return ResponseEntity.ok("Motocicleta eliminada");
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Motorcycle> updateMotorcycle(@PathVariable("id") int id,  @RequestBody Motorcycle motorcycle, BindingResult result){
+        if (result.hasErrors()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    this.formatMessage(result));
+        }
+
+        try {
+            MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+            motorcycleService.update(id, motorcycle);
+        } catch (Exception e){
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(motorcycle);
+    }
 
 
     private String formatMessage(BindingResult result){

@@ -14,8 +14,9 @@ public class Motorcycle {
     private String brand;
     private double price;
     private String snid;
-    private boolean abs;
+    private boolean absBrake;
     private String forkType;
     private boolean helmetIncluded;
     private LocalDateTime arrivalDate;
+
 }
