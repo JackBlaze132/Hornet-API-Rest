@@ -16,5 +16,10 @@ namespace PClienteEstudiante.view.motorcycle
         {
             InitializeComponent();
         }
+
+        private void dataGridMoto_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

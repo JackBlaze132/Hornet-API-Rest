@@ -16,5 +16,10 @@ namespace PClienteEstudiante.view
         {
             InitializeComponent();
         }
+
+        private void btnAddMoto_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
