@@ -32,7 +32,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 2,\r\n    \"brand\": \"mercedez\",\r\n    \"price\": 10,\r\n    \"snid\": \"41MZCZ202136\",\r\n    \"abs\": true,\r\n    \"forkType\": \"fork\",\r\n    \"helmetIncluded\": true,\r\n    \"arrivalDate\": \"2024-09-29T12:45:00\"\r\n}",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"brand\": \"susuki\",\r\n    \"price\": 10,\r\n    \"snid\": \"41MZCZ202136\",\r\n    \"abs\": true,\r\n    \"forkType\": \"upside-down\",\r\n    \"helmetIncluded\": true,\r\n    \"arrivalDate\": \"2024-09-29T12:45:00\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"brand\": \"susuki\",\r\n    \"snid\": \"41MZCZ202137\",\r\n    \"forkType\": \"Upside-down\"\r\n}\r\n",
+					"raw": "{\r\n    \"brand\": \"Honda\",\r\n    \"snid\": \"41MZCZ202137\",\r\n    \"forkType\": \"telescopic\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,7 +88,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8090/motorcycles/update/1",
+					"raw": "localhost:8090/motorcycles/update/2",
 					"host": [
 						"localhost"
 					],
@@ -96,7 +96,7 @@
 					"path": [
 						"motorcycles",
 						"update",
-						"1"
+						"2"
 					]
 				}
 			},
