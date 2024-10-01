@@ -47,22 +47,22 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(194, 157);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(259, 193);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 25);
+            this.label1.Size = new System.Drawing.Size(276, 31);
             this.label1.TabIndex = 1;
             this.label1.Text = "HORNET CORSAIR";
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.motorcycleToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(593, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(791, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -71,14 +71,15 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // motorcycleToolStripMenuItem
             // 
@@ -89,41 +90,41 @@
             this.updateMotorcycleToolStripMenuItem,
             this.listMotorcycleToolStripMenuItem});
             this.motorcycleToolStripMenuItem.Name = "motorcycleToolStripMenuItem";
-            this.motorcycleToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.motorcycleToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
             this.motorcycleToolStripMenuItem.Text = "Motorcycle";
             // 
             // addMotorcycleToolStripMenuItem
             // 
             this.addMotorcycleToolStripMenuItem.Name = "addMotorcycleToolStripMenuItem";
-            this.addMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.addMotorcycleToolStripMenuItem.Text = "Add Motorcycle";
             this.addMotorcycleToolStripMenuItem.Click += new System.EventHandler(this.addMotorcycleToolStripMenuItem_Click);
             // 
             // searchMotorcycleToolStripMenuItem
             // 
             this.searchMotorcycleToolStripMenuItem.Name = "searchMotorcycleToolStripMenuItem";
-            this.searchMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.searchMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.searchMotorcycleToolStripMenuItem.Text = "Search Motorcycle";
             this.searchMotorcycleToolStripMenuItem.Click += new System.EventHandler(this.searchMotorcycleToolStripMenuItem_Click);
             // 
             // deleteMotorcycleToolStripMenuItem
             // 
             this.deleteMotorcycleToolStripMenuItem.Name = "deleteMotorcycleToolStripMenuItem";
-            this.deleteMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.deleteMotorcycleToolStripMenuItem.Text = "Delete Motorcycle";
             this.deleteMotorcycleToolStripMenuItem.Click += new System.EventHandler(this.deleteMotorcycleToolStripMenuItem_Click);
             // 
             // updateMotorcycleToolStripMenuItem
             // 
             this.updateMotorcycleToolStripMenuItem.Name = "updateMotorcycleToolStripMenuItem";
-            this.updateMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.updateMotorcycleToolStripMenuItem.Text = "Update Motorcycle";
             this.updateMotorcycleToolStripMenuItem.Click += new System.EventHandler(this.updateMotorcycleToolStripMenuItem_Click);
             // 
             // listMotorcycleToolStripMenuItem
             // 
             this.listMotorcycleToolStripMenuItem.Name = "listMotorcycleToolStripMenuItem";
-            this.listMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listMotorcycleToolStripMenuItem.Size = new System.Drawing.Size(219, 26);
             this.listMotorcycleToolStripMenuItem.Text = "List Motorcycle";
             this.listMotorcycleToolStripMenuItem.Click += new System.EventHandler(this.listMotorcycleToolStripMenuItem_Click);
             // 
@@ -132,24 +133,25 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutUsToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutUsToolStripMenuItem
             // 
             this.aboutUsToolStripMenuItem.Name = "aboutUsToolStripMenuItem";
-            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutUsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.aboutUsToolStripMenuItem.Text = "About Us";
+            this.aboutUsToolStripMenuItem.Click += new System.EventHandler(this.aboutUsToolStripMenuItem_Click);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 354);
+            this.ClientSize = new System.Drawing.Size(791, 436);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cliente Estudiante";

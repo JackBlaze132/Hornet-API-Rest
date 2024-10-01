@@ -49,5 +49,15 @@ namespace PClienteEstudiante
             GUIListMotorcycle gUIListMotorcycle = new GUIListMotorcycle();
             gUIListMotorcycle.Show();
         }
+
+        private void aboutUsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Developed by: \n\n Eder Martínez\n Jaime Rodriguez\n Jhon Cardenas \n\n Hornet©2024", "About us");
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Main.ActiveForm.Close();
+        }
     }
 }
