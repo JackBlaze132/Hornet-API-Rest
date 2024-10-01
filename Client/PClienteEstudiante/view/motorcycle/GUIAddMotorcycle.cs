@@ -60,6 +60,7 @@ namespace PClienteEstudiante.view
             }
         }
 
+
         private void txtIdMoto_TextChanged(object sender, EventArgs e) { }
         private void txtBrandMoto_TextChanged(object sender, EventArgs e) { }
         private void txtPriceMoto_TextChanged(object sender, EventArgs e) { }
@@ -67,7 +68,11 @@ namespace PClienteEstudiante.view
         private void boxABS_CheckedChanged(object sender, EventArgs e) { }
         private void txtFroktype_TextChanged(object sender, EventArgs e) { }
         private void boxHelmet_CheckedChanged(object sender, EventArgs e) { }
-        private void datePickerMotorcycle_ValueChanged(object sender, EventArgs e) { }
+        private void datePickerMotorcycle_ValueChanged(object sender, EventArgs e) {
+            datePickerMotorcycle.CustomFormat = "dd/MM/yyyy";
+        }
+
     }
+
 
 }
