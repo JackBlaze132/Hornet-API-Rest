@@ -123,5 +123,27 @@ public class MotorcycleController {
         return jsonString;
     }
 
+    //TEST METHOD QA
+    @PostMapping("/addMultiple")
+    public ResponseEntity<List<Motorcycle>> addMotorcycles(@RequestBody List<Motorcycle> motorcycles, BindingResult result) {
+        if (result.hasErrors()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
+        }
 
+        MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
+
+        List<Motorcycle> createdMotorcycles = new ArrayList<>();
+
+        try {
+            for (Motorcycle motorcycle : motorcycles) {
+                motorcycleService.postMotorcycle(motorcycle); // Llama al servicio para guardar cada motocicleta
+                createdMotorcycles.add(motorcycle); // Añade la motocicleta creada a la lista de respuesta
+            }
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(createdMotorcycles);
+    }
+    
 }

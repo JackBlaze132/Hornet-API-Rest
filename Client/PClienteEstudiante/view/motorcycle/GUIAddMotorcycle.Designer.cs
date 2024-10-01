@@ -62,10 +62,11 @@
             // txtIdMoto
             // 
             this.txtIdMoto.Location = new System.Drawing.Point(405, 94);
-            this.txtIdMoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIdMoto.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdMoto.Name = "txtIdMoto";
             this.txtIdMoto.Size = new System.Drawing.Size(500, 22);
             this.txtIdMoto.TabIndex = 1;
+            this.txtIdMoto.TextChanged += new System.EventHandler(this.txtIdMoto_TextChanged);
             // 
             // label2
             // 
@@ -147,32 +148,35 @@
             // txtBrandMoto
             // 
             this.txtBrandMoto.Location = new System.Drawing.Point(405, 146);
-            this.txtBrandMoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrandMoto.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrandMoto.Name = "txtBrandMoto";
             this.txtBrandMoto.Size = new System.Drawing.Size(500, 22);
             this.txtBrandMoto.TabIndex = 9;
+            this.txtBrandMoto.TextChanged += new System.EventHandler(this.txtBrandMoto_TextChanged);
             // 
             // txtPriceMoto
             // 
             this.txtPriceMoto.Location = new System.Drawing.Point(405, 196);
-            this.txtPriceMoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPriceMoto.Margin = new System.Windows.Forms.Padding(4);
             this.txtPriceMoto.Name = "txtPriceMoto";
             this.txtPriceMoto.Size = new System.Drawing.Size(500, 22);
             this.txtPriceMoto.TabIndex = 10;
+            this.txtPriceMoto.TextChanged += new System.EventHandler(this.txtPriceMoto_TextChanged);
             // 
             // txtFroktype
             // 
             this.txtFroktype.Location = new System.Drawing.Point(405, 337);
-            this.txtFroktype.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFroktype.Margin = new System.Windows.Forms.Padding(4);
             this.txtFroktype.Name = "txtFroktype";
             this.txtFroktype.Size = new System.Drawing.Size(500, 22);
             this.txtFroktype.TabIndex = 11;
+            this.txtFroktype.TextChanged += new System.EventHandler(this.txtFroktype_TextChanged);
             // 
             // btnAddMoto
             // 
             this.btnAddMoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddMoto.Location = new System.Drawing.Point(389, 498);
-            this.btnAddMoto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddMoto.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddMoto.Name = "btnAddMoto";
             this.btnAddMoto.Size = new System.Drawing.Size(205, 65);
             this.btnAddMoto.TabIndex = 12;
@@ -184,29 +188,32 @@
             // 
             this.boxABS.AutoSize = true;
             this.boxABS.Location = new System.Drawing.Point(405, 288);
-            this.boxABS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.boxABS.Margin = new System.Windows.Forms.Padding(4);
             this.boxABS.Name = "boxABS";
             this.boxABS.Size = new System.Drawing.Size(18, 17);
             this.boxABS.TabIndex = 13;
             this.boxABS.UseVisualStyleBackColor = true;
+            this.boxABS.CheckedChanged += new System.EventHandler(this.boxABS_CheckedChanged);
             // 
             // boxHelmet
             // 
             this.boxHelmet.AutoSize = true;
             this.boxHelmet.Location = new System.Drawing.Point(405, 389);
-            this.boxHelmet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.boxHelmet.Margin = new System.Windows.Forms.Padding(4);
             this.boxHelmet.Name = "boxHelmet";
             this.boxHelmet.Size = new System.Drawing.Size(18, 17);
             this.boxHelmet.TabIndex = 14;
             this.boxHelmet.UseVisualStyleBackColor = true;
+            this.boxHelmet.CheckedChanged += new System.EventHandler(this.boxHelmet_CheckedChanged);
             // 
             // datePickerMotorcycle
             // 
             this.datePickerMotorcycle.Location = new System.Drawing.Point(405, 437);
-            this.datePickerMotorcycle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.datePickerMotorcycle.Margin = new System.Windows.Forms.Padding(4);
             this.datePickerMotorcycle.Name = "datePickerMotorcycle";
             this.datePickerMotorcycle.Size = new System.Drawing.Size(265, 22);
             this.datePickerMotorcycle.TabIndex = 15;
+            this.datePickerMotorcycle.ValueChanged += new System.EventHandler(this.datePickerMotorcycle_ValueChanged);
             // 
             // label9
             // 
@@ -222,10 +229,11 @@
             // txtModelMotorcycle
             // 
             this.txtModelMotorcycle.Location = new System.Drawing.Point(405, 240);
-            this.txtModelMotorcycle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModelMotorcycle.Margin = new System.Windows.Forms.Padding(4);
             this.txtModelMotorcycle.Name = "txtModelMotorcycle";
             this.txtModelMotorcycle.Size = new System.Drawing.Size(500, 22);
             this.txtModelMotorcycle.TabIndex = 17;
+            this.txtModelMotorcycle.TextChanged += new System.EventHandler(this.txtModelMotorcycle_TextChanged);
             // 
             // GUIAddMotorcycle
             // 
@@ -250,7 +258,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtIdMoto);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GUIAddMotorcycle";
             this.Text = "Add Motorcycle";
             this.ResumeLayout(false);
