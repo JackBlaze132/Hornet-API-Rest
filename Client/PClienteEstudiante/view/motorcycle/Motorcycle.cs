@@ -2,7 +2,7 @@
 
 namespace PClienteEstudiante.view.motorcycle
 {
-    internal class Motorcycle
+    public class Motorcycle
     {
         public int id { get; set; }
         public string brand { get; set; }
