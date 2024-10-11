@@ -27,7 +27,7 @@ public class MotorcycleController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<ArrayList<Motorcycle>> getMotorcycle(){
+    public ResponseEntity<ArrayList<Motorcycle>> getAllMotorcycles(){
         MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
 
         ArrayList<Motorcycle> motorcycles = motorcycleService.getMotorcycles();
@@ -40,7 +40,7 @@ public class MotorcycleController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Motorcycle> getMotorcycle(@RequestParam("id") Optional<Integer> id, @RequestParam("snid") Optional<String> snid){
+    public ResponseEntity<Motorcycle> searchMotorcycle(@RequestParam("id") Optional<Integer> id, @RequestParam("snid") Optional<String> snid){
         MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
 
         Motorcycle motorcycle = motorcycleService.getMotorcycles(id.orElse(-1), snid.orElse(null)).stream().findFirst().orElse(null);
@@ -52,7 +52,7 @@ public class MotorcycleController {
 
 
     @PostMapping("/add")
-    public ResponseEntity<Motorcycle> setId(@RequestBody Motorcycle motorcycle, BindingResult result){
+    public ResponseEntity<Motorcycle> addMotorcycle(@RequestBody Motorcycle motorcycle, BindingResult result){
         if (result.hasErrors()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                     this.formatMessage(result));

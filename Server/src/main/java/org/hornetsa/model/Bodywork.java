@@ -1,2 +1,15 @@
-package org.hornetsa.model;public class Bodywork {
+package org.hornetsa.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Bodywork {
+    private int id;
+    private String name;
 }
