@@ -27,17 +27,34 @@ public class MotorcycleController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<ArrayList<Motorcycle>> getAllMotorcycles(){
+    public ResponseEntity<List<Motorcycle>> getAllMotorcycles(@RequestParam(value = "helmetIncluded", required = false) Boolean helmetIncluded, @RequestParam(value = "absBrake", required = false) Boolean absBrake) {
         MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
 
-        ArrayList<Motorcycle> motorcycles = motorcycleService.getMotorcycles();
+        // Obtener la lista completa de motocicletas
+        List<Motorcycle> motorcycles = motorcycleService.getMotorcycles();
 
-        if (motorcycles == null || motorcycles.isEmpty()) return ResponseEntity.notFound().build();
+        // Filtrar por casco incluido si se especifica
+        if (helmetIncluded != null) {
+            motorcycles = motorcycles.stream()
+                    .filter(m -> m.isHelmetIncluded() == helmetIncluded)
+                    .collect(Collectors.toList());
+        }
 
+        // Filtrar por frenos ABS si se especifica
+        if (absBrake != null) {
+            motorcycles = motorcycles.stream()
+                    .filter(m -> m.isAbsBrake() == absBrake)
+                    .collect(Collectors.toList());
+        }
 
+        // Verificar si la lista resultante está vacía
+        if (motorcycles.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
         return ResponseEntity.ok(motorcycles);
     }
+
 
     @GetMapping("/search")
     public ResponseEntity<Motorcycle> searchMotorcycle(@RequestParam("id") Optional<Integer> id, @RequestParam("snid") Optional<String> snid){
