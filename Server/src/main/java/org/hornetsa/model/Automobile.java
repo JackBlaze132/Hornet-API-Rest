@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Data
@@ -19,7 +20,7 @@ public class Automobile {
     private double price;
     private String snid;
     private boolean absBrake;
-    private ArrayList<Bodywork> bodyworks;
+    private List<Integer> bodyworks;  // Stores the IDs of associated Bodyworks
     private LocalDateTime arrivalDate;
-
 }
+
