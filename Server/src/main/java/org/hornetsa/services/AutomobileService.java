@@ -32,14 +32,40 @@ public class AutomobileService {
         return automobileService;
     }
 
-    // Returns a filtered list of automobiles based on the given ID and SNID
-    public List<Map<String, Object>> getAutomobiles(int id, String snid) {
-        int defaultId = -1;  // Default ID for filtering
+    public Optional<Map<String, Object>> getAutomobile(int id, String snid) {
+        int defaultId = -1; // Valor predeterminado para el ID
 
-        // Filter the automobiles by ID and SNID
         return automobiles.stream()
                 .filter(auto -> (id == defaultId || auto.getId() == id)
                         && (snid == null || auto.getSnid().equalsIgnoreCase(snid)))
+                .findFirst()  // Obtener solo el primer automóvil encontrado
+                .map(auto -> {
+                    // Reemplazar los IDs por los objetos completos de Bodywork
+                    List<Bodywork> fullBodyworks = auto.getBodyworks().stream()
+                            .map(bodyworkService::findBodyworkById) // Buscar Bodywork por ID
+                            .filter(Objects::nonNull) // Filtrar Bodyworks no encontrados
+                            .collect(Collectors.toList());
+
+                    // Crear el mapa con la información completa del automóvil
+                    Map<String, Object> response = new LinkedHashMap<>();
+                    response.put("id", auto.getId());
+                    response.put("brand", auto.getBrand());
+                    response.put("price", auto.getPrice());
+                    response.put("snid", auto.getSnid());
+                    response.put("absBrake", auto.isAbsBrake());
+                    response.put("bodyworks", fullBodyworks); // Agregar objetos completos
+                    response.put("arrivalDate", auto.getArrivalDate());
+
+                    return response;
+                });
+    }
+
+
+    // Returns a filtered list of automobiles based on the given ID and SNID
+    public List<Map<String, Object>> getAutomobiles() {
+
+        // Filter the automobiles by ID and SNID
+        return automobiles.stream()
                 .map(auto -> {
                     // Replace bodywork IDs with complete Bodywork objects
                     List<Bodywork> fullBodyworks = auto.getBodyworks().stream()

@@ -26,10 +26,10 @@ public class BodyworkController {
 
     // GET endpoint to retrieve all bodyworks
     @GetMapping("/get")
-    public ResponseEntity<ArrayList<Bodywork>> getAllBodyworks() {
+    public ResponseEntity<List<Bodywork>> getAllBodyworks() {
         BodyworkService bodyworkService = BodyworkService.getBodyworkService();  // Get singleton instance
 
-        ArrayList<Bodywork> bodyworks = bodyworkService.getBodyworks();  // Retrieve all bodyworks
+        List<Bodywork> bodyworks = bodyworkService.getBodyworks();  // Retrieve all bodyworks
 
         // Return 404 if no bodyworks are found
         if (bodyworks == null || bodyworks.isEmpty()) return ResponseEntity.notFound().build();

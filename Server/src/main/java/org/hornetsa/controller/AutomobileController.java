@@ -27,35 +27,47 @@ public class AutomobileController {
         return "Automobile Service OK!";
     }
 
-    // GET endpoint to retrieve all automobiles
     @GetMapping("/get")
-    public ResponseEntity<List<Map<String, Object>>> getAllAutomobiles() {
-        List<Map<String, Object>> automobiles = automobileService.getAutomobiles(-1, null);
+    public ResponseEntity<List<Map<String, Object>>> getAllAutomobiles(
+            @RequestParam(value = "absBrake", required = false) Boolean absBrake) {
 
-        // Return 404 if no automobiles found
+        // Obtener la lista completa de automóviles
+        List<Map<String, Object>> automobiles = automobileService.getAutomobiles();
+
+        // Filtrar por frenos ABS si se especifica
+        if (absBrake != null) {
+            automobiles = automobiles.stream()
+                    .filter(a -> (Boolean) a.get("absBrake") == absBrake)
+                    .collect(Collectors.toList());
+        }
+
+        // Verificar si la lista resultante está vacía
         if (automobiles.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        // Return the list of automobiles with status 200
+        // Devolver la lista de automóviles con status 200
         return ResponseEntity.ok(automobiles);
     }
+
 
     // GET endpoint to search for automobiles by ID and SNID
     @GetMapping("/search")
-    public ResponseEntity<List<Map<String, Object>>> searchAutomobile(
-            @RequestParam("id") Optional<Integer> id,  // Optional query parameter for ID
-            @RequestParam("snid") Optional<String> snid) {  // Optional query parameter for SNID
-        List<Map<String, Object>> automobiles = automobileService.getAutomobiles(id.orElse(-1), snid.orElse(null));
+    public ResponseEntity<Map<String, Object>> searchAutomobile(
+            @RequestParam("id") Optional<Integer> id,
+            @RequestParam("snid") Optional<String> snid) {
 
-        // Return 404 if no matching automobiles found
-        if (automobiles.isEmpty()) {
+        Optional<Map<String, Object>> automobile = automobileService.getAutomobile(id.orElse(-1), snid.orElse(null));
+
+        // Si no se encuentra el automóvil, devuelve 404
+        if (automobile.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        // Return the search results with status 200
-        return ResponseEntity.ok(automobiles);
+        // Devuelve la entidad con 200 OK
+        return ResponseEntity.ok(automobile.get());
     }
+
 
     // POST endpoint to add a new automobile
     @PostMapping("/add")
