@@ -57,6 +57,7 @@
             this.label1.Size = new System.Drawing.Size(175, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Add Motorcycle";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtIdMoto
             // 
@@ -75,6 +76,7 @@
             this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Id Moto:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -85,6 +87,7 @@
             this.label3.Size = new System.Drawing.Size(46, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Brand:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
