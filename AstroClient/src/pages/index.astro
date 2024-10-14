@@ -3,13 +3,16 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import {Automobiles} from '../components/Automobiles.tsx';
 
-const data = await fetch('http://localhost:8090/automobiles/search?id=1').then(res => res.json());
-
-console.log(data);  
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
+		<Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
+		<Button color="primary">
+			Button
+		  </Button>
+		<!-- <Button client:load auto>Hola</Button>-->x	
+
 		<svg
 			class="astro-a"
 			width="495"
@@ -43,7 +46,6 @@ console.log(data);
 			To get started, open the directory <code>src/pages</code> in your project.<br />
 			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
 		</p>
-		<Automobiles name={data.brand} />
 		<ul role="list" class="link-card-grid">
 			
 			<Card
