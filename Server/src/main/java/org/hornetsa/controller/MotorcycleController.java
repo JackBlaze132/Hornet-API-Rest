@@ -60,7 +60,7 @@ public class MotorcycleController {
     public ResponseEntity<Motorcycle> searchMotorcycle(@RequestParam("id") Optional<Integer> id, @RequestParam("snid") Optional<String> snid){
         MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
 
-        Motorcycle motorcycle = motorcycleService.getMotorcycles(id.orElse(-1), snid.orElse(null)).stream().findFirst().orElse(null);
+        Motorcycle motorcycle = motorcycleService.getMotorcycle(id.orElse(-1), snid.orElse(null)).stream().findFirst().orElse(null);
 
         if (motorcycle == null) return ResponseEntity.notFound().build();
 

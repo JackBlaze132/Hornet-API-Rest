@@ -30,7 +30,7 @@ public class MotorcycleService {
         return motorcycles;
     }
 
-    public List<Motorcycle> getMotorcycles(int id, String snid) {
+    public List<Motorcycle> getMotorcycle(int id, String snid) {
         int defaultId = -1;
         return this.motorcycles.stream()
                 .filter(m -> (id == defaultId || m.getId() == id)

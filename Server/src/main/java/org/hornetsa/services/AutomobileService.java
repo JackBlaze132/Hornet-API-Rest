@@ -16,13 +16,16 @@ public class AutomobileService {
     private static AutomobileService automobileService;
 
     // List to store automobile objects
-    private static ArrayList<Automobile> automobiles = new ArrayList<>();
+    private static ArrayList<Automobile> automobiles;
 
     // Access to the BodyworkService for bodywork operations
-    private static BodyworkService bodyworkService = BodyworkService.getBodyworkService();
+    private static BodyworkService bodyworkService;
 
     // Private constructor to enforce singleton pattern
-    private AutomobileService() {}
+    private AutomobileService() {
+        automobiles = new ArrayList<>();
+        bodyworkService = BodyworkService.getBodyworkService();
+    }
 
     // Method to get the singleton instance of AutomobileService
     public static AutomobileService getAutomobileService() {
@@ -60,11 +63,8 @@ public class AutomobileService {
                 });
     }
 
-
-    // Returns a filtered list of automobiles based on the given ID and SNID
+    // Method to get the list of automobiles
     public List<Map<String, Object>> getAutomobiles() {
-
-        // Filter the automobiles by ID and SNID
         return automobiles.stream()
                 .map(auto -> {
                     // Replace bodywork IDs with complete Bodywork objects
@@ -102,6 +102,11 @@ public class AutomobileService {
         if (bodyworkService.findBodyworkById(bodyworkId) == null) {
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Bodywork with ID: " + bodyworkId + " not found");
+        }
+
+        if (automobiles.stream().anyMatch(a -> a.getId() == automobile.getId() || a.getSnid().equals(automobile.getSnid()))) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, "An automobile with the same ID or SNID already exists");
         }
 
         // Add the automobile to the list if validations pass
