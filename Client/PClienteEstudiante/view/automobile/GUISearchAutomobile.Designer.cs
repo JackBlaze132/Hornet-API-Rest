@@ -44,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdAuto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBoxBodyAuto
@@ -97,7 +98,7 @@
             // btnSearchAutomobile
             // 
             this.btnSearchAutomobile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchAutomobile.Location = new System.Drawing.Point(302, 397);
+            this.btnSearchAutomobile.Location = new System.Drawing.Point(513, 381);
             this.btnSearchAutomobile.Name = "btnSearchAutomobile";
             this.btnSearchAutomobile.Size = new System.Drawing.Size(154, 53);
             this.btnSearchAutomobile.TabIndex = 47;
@@ -199,11 +200,23 @@
             this.label1.TabIndex = 37;
             this.label1.Text = "Search Automobile";
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(175, 381);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(154, 53);
+            this.btnClear.TabIndex = 53;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // GUISearchAutomobile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 496);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.comboBoxBodyAuto);
             this.Controls.Add(this.txtSnidAuto);
             this.Controls.Add(this.label9);
@@ -245,5 +258,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtIdAuto;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnClear;
     }
 }

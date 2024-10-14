@@ -107,6 +107,10 @@ namespace PClienteEstudiante.view.motorcycle
             datePickerMotorcycle.Text = "";
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearFields();
+        }
     }
 
 

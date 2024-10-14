@@ -121,5 +121,10 @@ namespace PClienteEstudiante.view.automobile
             comboBoxBodyAuto.Text = ""; // Clear the ComboBox selection.
             datePickerAuto.Text = ""; // Clear the DateTimePicker field.
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+        }
     }
 }

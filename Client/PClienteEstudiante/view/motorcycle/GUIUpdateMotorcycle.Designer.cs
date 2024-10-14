@@ -47,6 +47,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdMoto = new System.Windows.Forms.TextBox();
             this.btnSearchMoto = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -219,9 +220,9 @@
             // 
             // txtIdMoto
             // 
-            this.txtIdMoto.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txtIdMoto.Cursor = System.Windows.Forms.Cursors.No;
-            this.txtIdMoto.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.txtIdMoto.BackColor = System.Drawing.SystemColors.Window;
+            this.txtIdMoto.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtIdMoto.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtIdMoto.Location = new System.Drawing.Point(326, 80);
             this.txtIdMoto.Name = "txtIdMoto";
             this.txtIdMoto.Size = new System.Drawing.Size(376, 20);
@@ -239,11 +240,23 @@
             this.btnSearchMoto.UseVisualStyleBackColor = true;
             this.btnSearchMoto.Click += new System.EventHandler(this.btnSearchMoto_Click);
             // 
+            // btnReset
+            // 
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(403, 442);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(48, 21);
+            this.btnReset.TabIndex = 71;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // GUIUpdateMotorcycle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(825, 542);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSearchMoto);
             this.Controls.Add(this.txtModelMotorcycle);
             this.Controls.Add(this.label9);
@@ -291,5 +304,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtIdMoto;
         private System.Windows.Forms.Button btnSearchMoto;
+        private System.Windows.Forms.Button btnReset;
     }
 }

@@ -46,6 +46,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -61,7 +62,7 @@
             // btnSearchMoto
             // 
             this.btnSearchMoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchMoto.Location = new System.Drawing.Point(369, 472);
+            this.btnSearchMoto.Location = new System.Drawing.Point(567, 442);
             this.btnSearchMoto.Name = "btnSearchMoto";
             this.btnSearchMoto.Size = new System.Drawing.Size(130, 40);
             this.btnSearchMoto.TabIndex = 15;
@@ -217,11 +218,23 @@
             this.label6.TabIndex = 34;
             this.label6.Text = "Does it have ABS?";
             // 
+            // btnClear
+            // 
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(312, 442);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(132, 40);
+            this.btnClear.TabIndex = 54;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // GUISearchMotorcycle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(968, 520);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.datePickerMotorcycle);
             this.Controls.Add(this.boxHelmet);
@@ -267,5 +280,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnClear;
     }
 }

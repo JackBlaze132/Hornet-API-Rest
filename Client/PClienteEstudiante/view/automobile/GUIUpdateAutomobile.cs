@@ -25,10 +25,10 @@ namespace PClienteEstudiante.view.automobile
         {
             try
             {
-                // Validar que al menos uno de los dos campos esté lleno.
-                if (string.IsNullOrWhiteSpace(txtIdAuto.Text) && string.IsNullOrWhiteSpace(txtSnidAuto.Text))
+                // Validar que el campo esté lleno.
+                if (string.IsNullOrWhiteSpace(txtIdAuto.Text) || !int.TryParse(txtIdAuto.Text, out int automobileId))
                 {
-                    MessageBox.Show("Please enter either an ID or SNID to search.");
+                    MessageBox.Show("Please enter a valid ID to search.");
                     ClearForm();
                     return;
                 }
@@ -38,24 +38,7 @@ namespace PClienteEstudiante.view.automobile
                 var options = new RestClientOptions("http://localhost:8090");
                 var client = new RestClient(options);
 
-                // Si se proporciona el ID, validar que sea numérico y crear la solicitud con ID.
-                if (!string.IsNullOrWhiteSpace(txtIdAuto.Text))
-                {
-                    if (!int.TryParse(txtIdAuto.Text, out int automobileId))
-                    {
-                        MessageBox.Show("The ID must be a numeric value.");
-                        ClearForm();
-                        return;
-                    }
-
-                    request = new RestRequest($"/automobiles/search?id={automobileId}", Method.Get);
-                }
-                else
-                {
-                    // Si no hay ID, crear la solicitud con el SNID.
-                    string snid = txtSnidAuto.Text;
-                    request = new RestRequest($"/automobiles/search?snid={snid}", Method.Get);
-                }
+                request = new RestRequest($"/automobiles/search?id={automobileId}", Method.Get);
 
                 var response = client.Execute(request); // Ejecutar la solicitud GET.
 
@@ -72,6 +55,7 @@ namespace PClienteEstudiante.view.automobile
                     if (automobile != null)
                     {
                         // Llenar los campos del formulario con los datos del automóvil.
+                        LoadBodyworks();
                         txtIdAuto.Text = automobile.id.ToString();
                         txtIdAuto.ReadOnly = true;
                         txtBrandAuto.Text = automobile.brand;
@@ -80,7 +64,6 @@ namespace PClienteEstudiante.view.automobile
                         comboBoxBodyAuto.Text = automobile.bodyworks[0].name;
                         boxABS.Checked = automobile.absBrake;
                         datePickerAuto.Value = automobile.arrivalDate;
-                        LoadBodyworks();
                         enableFields();
                     }
                     else
@@ -139,7 +122,7 @@ namespace PClienteEstudiante.view.automobile
                 var request = new RestRequest($"/automobiles/update/{automobile.id}", Method.Put);
 
                 // Serializar el objeto Automobile, enviando solo los IDs de los Bodyworks.
-                var serializedAutomobile = new
+                var searchedAutomobile = new
                 {
                     automobile.id,
                     automobile.brand,
@@ -150,7 +133,7 @@ namespace PClienteEstudiante.view.automobile
                     automobile.arrivalDate
                 };
 
-                string automobileJson = JsonSerializer.Serialize(serializedAutomobile);
+                string automobileJson = JsonSerializer.Serialize(searchedAutomobile);
                 request.AddJsonBody(automobileJson); // Agregar el JSON al cuerpo de la solicitud.
 
                 var response = client.Execute(request); // Ejecutar la solicitud PUT.
@@ -158,7 +141,8 @@ namespace PClienteEstudiante.view.automobile
                 if (response.IsSuccessful)
                 {
                     MessageBox.Show("Automobile updated successfully.");
-                    ClearForm(); // Limpiar el formulario después de la actualización.
+                    btnReset.PerformClick(); // Limpiar el formulario.
+                    searchedAutomobile = null; // Reiniciar el automóvil buscado.
                 }
                 else
                 {
@@ -194,6 +178,22 @@ namespace PClienteEstudiante.view.automobile
             boxABS.Enabled = true;
             datePickerAuto.Enabled = true;
         }
+
+        private void enableIdField()
+        {
+            txtIdAuto.ReadOnly = false;
+        }
+
+        private void disableFields()
+        {
+            txtBrandAuto.ReadOnly = true;
+            txtPriceAuto.ReadOnly = true;
+            txtSnidAuto.ReadOnly = true;
+            comboBoxBodyAuto.Enabled = false;
+            boxABS.Enabled = false;
+            datePickerAuto.Enabled = false;
+        }
+
         private void LoadBodyworks()
         {
             try
@@ -233,6 +233,13 @@ namespace PClienteEstudiante.view.automobile
         private void datePickerAuto_ValueChanged(object sender, EventArgs e)
         {
             datePickerAuto.CustomFormat = "dd/MM/yyyy";
+        }
+
+        private void btnResetAuto_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            disableFields();
+            enableIdField();
         }
     }
 }

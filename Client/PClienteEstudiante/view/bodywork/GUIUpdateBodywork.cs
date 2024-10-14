@@ -22,6 +22,13 @@ namespace PClienteEstudiante.view.bodywork
         {
             try
             {
+
+                if (string.IsNullOrWhiteSpace(txtIdBody.Text))
+                {
+                    MessageBox.Show("Please enter an ID to search.");
+                    return;
+                }
+
                 var options = new RestClientOptions("http://localhost:8090");
                 var client = new RestClient(options);
                 var request = new RestRequest($"/bodyworks/search?id={txtIdBody.Text}", Method.Get);
@@ -38,6 +45,7 @@ namespace PClienteEstudiante.view.bodywork
                         // Populate the text boxes with the bodywork data.
                         txtNameBody.Text = serchedBodywork.name;
                         txtNameBody.ReadOnly = false;
+                        txtIdBody.ReadOnly = true;
                     }
                     else
                     {
@@ -92,8 +100,8 @@ namespace PClienteEstudiante.view.bodywork
                 {
                     MessageBox.Show("Bodywork updated successfully.");
                     serchedBodywork = null; // Reset the selected bodywork
-                    txtIdBody.Text = "";
-                    txtNameBody.Text = "";
+                    clearField();
+                    btnReset.PerformClick();
                 }
                 else
                 {
@@ -105,6 +113,29 @@ namespace PClienteEstudiante.view.bodywork
                 // Handle and display any exception that occurs during the update.
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+        }
+
+        private void btnResetBody_Click(object sender, EventArgs e)
+        {
+            clearField();
+            enableIdField();
+            disableNameField();
+        }
+
+        private void clearField()
+        {
+            txtIdBody.Text = "";
+            txtNameBody.Text = "";
+        }
+
+        private void enableIdField()
+        {
+            txtIdBody.ReadOnly = false;
+        }
+
+        private void disableNameField()
+        {
+            txtNameBody.ReadOnly = true;
         }
     }
 }

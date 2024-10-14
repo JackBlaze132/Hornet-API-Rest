@@ -48,6 +48,7 @@ namespace PClienteEstudiante.view.motorcycle
                         boxHelmet.Checked = motorcycleToEdit.helmetIncluded;
                         datePickerMotorcycle.Value = motorcycleToEdit.arrivalDate;
                         enableFields();
+                        txtIdMoto.ReadOnly = true;
                     }
                     else
                     {
@@ -101,6 +102,7 @@ namespace PClienteEstudiante.view.motorcycle
                     this.DialogResult = DialogResult.OK;
                     clearFields();
                     disableFields();
+                    enableIdField();
                 }
                 else
                 {
@@ -134,6 +136,11 @@ namespace PClienteEstudiante.view.motorcycle
             datePickerMotorcycle.Enabled = true;
         }
 
+        public void enableIdField()
+        {
+            txtIdMoto.ReadOnly = false;
+        }
+
         private void disableFields()
         {
             txtBrandMoto.ReadOnly = true;
@@ -147,6 +154,7 @@ namespace PClienteEstudiante.view.motorcycle
 
         private void clearFields()
         {
+            txtIdMoto.Text = "";
             txtBrandMoto.Text = "";
             txtPriceMoto.Text = "";
             txtModelMotorcycle.Text = "";
@@ -156,5 +164,11 @@ namespace PClienteEstudiante.view.motorcycle
             datePickerMotorcycle.Text = "";
         }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            enableIdField();
+            clearFields();
+            disableFields();
+        }
     }
 }

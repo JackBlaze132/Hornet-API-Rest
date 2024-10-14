@@ -35,12 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdBody = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSearchBody
             // 
             this.btnSearchBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchBody.Location = new System.Drawing.Point(216, 312);
+            this.btnSearchBody.Location = new System.Drawing.Point(167, 310);
             this.btnSearchBody.Name = "btnSearchBody";
             this.btnSearchBody.Size = new System.Drawing.Size(162, 57);
             this.btnSearchBody.TabIndex = 32;
@@ -51,7 +52,7 @@
             // btnUpdateBody
             // 
             this.btnUpdateBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateBody.Location = new System.Drawing.Point(442, 314);
+            this.btnUpdateBody.Location = new System.Drawing.Point(502, 314);
             this.btnUpdateBody.Name = "btnUpdateBody";
             this.btnUpdateBody.Size = new System.Drawing.Size(154, 53);
             this.btnUpdateBody.TabIndex = 31;
@@ -104,11 +105,23 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Update Bodywork";
             // 
+            // btnReset
+            // 
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(389, 330);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(48, 21);
+            this.btnReset.TabIndex = 71;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnResetBody_Click);
+            // 
             // GUIUpdateBodywork
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSearchBody);
             this.Controls.Add(this.btnUpdateBody);
             this.Controls.Add(this.txtNameBody);
@@ -132,5 +145,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtIdBody;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReset;
     }
 }
