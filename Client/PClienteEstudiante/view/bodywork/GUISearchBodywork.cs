@@ -58,6 +58,7 @@ namespace PClienteEstudiante.view.bodywork
                         // Display the bodywork details in the corresponding text boxes.
                         txtIdBody.Text = searchedBodywork.id.ToString();
                         txtNameBody.Text = searchedBodywork.name;
+                        boxSunroof.Checked = searchedBodywork.hasSunroof;
                     }
                     else
                     {
@@ -80,6 +81,7 @@ namespace PClienteEstudiante.view.bodywork
         {
             txtIdBody.Text = string.Empty;
             txtNameBody.Text = string.Empty;
+            boxSunroof.Checked = false;
         }
     }
 }

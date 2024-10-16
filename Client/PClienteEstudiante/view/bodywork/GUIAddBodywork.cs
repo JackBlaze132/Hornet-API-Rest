@@ -21,7 +21,8 @@ namespace PClienteEstudiante.view.bodywork
                 var bodywork = new Bodywork
                 {
                     id = int.Parse(txtIdBody.Text),
-                    name = txtNameBody.Text
+                    name = txtNameBody.Text,
+                    hasSunroof = boxSunroof.Checked
                 };
 
                 request.AddJsonBody(bodywork);
@@ -33,6 +34,7 @@ namespace PClienteEstudiante.view.bodywork
                     MessageBox.Show("Bodywork added successfully: " + response.StatusDescription);
                     txtIdBody.Text = "";
                     txtNameBody.Text = "";
+                    boxSunroof.Checked = false;
                 }
                 else
                 {

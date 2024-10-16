@@ -10,5 +10,6 @@ namespace PClienteEstudiante.view.bodywork
     {
         public int id { get; set; }
         public string name { get; set; }
+        public bool hasSunroof { get; set; }
     }
 }

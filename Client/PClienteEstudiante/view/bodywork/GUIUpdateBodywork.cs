@@ -8,7 +8,7 @@ namespace PClienteEstudiante.view.bodywork
     // This form provides functionality to search for and update bodywork records by ID using a REST API.
     public partial class GUIUpdateBodywork : Form
     {
-        private Bodywork serchedBodywork; // Stores the currently selected bodywork object.
+        private Bodywork searchedBodywork; // Stores the currently selected bodywork object.
 
         // Initializes the form components.
         public GUIUpdateBodywork()
@@ -38,13 +38,15 @@ namespace PClienteEstudiante.view.bodywork
                 if (response.IsSuccessful)
                 {
                     // Deserialize the response to a Bodywork object.
-                    serchedBodywork = JsonSerializer.Deserialize<Bodywork>(response.Content);
+                    searchedBodywork = JsonSerializer.Deserialize<Bodywork>(response.Content);
 
-                    if (serchedBodywork != null)
+                    if (searchedBodywork != null)
                     {
                         // Populate the text boxes with the bodywork data.
-                        txtNameBody.Text = serchedBodywork.name;
+                        txtNameBody.Text = searchedBodywork.name;
+                        boxSunroof.Checked = searchedBodywork.hasSunroof;
                         txtNameBody.ReadOnly = false;
+                        boxSunroof.Enabled = true;
                         txtIdBody.ReadOnly = true;
                     }
                     else
@@ -68,7 +70,7 @@ namespace PClienteEstudiante.view.bodywork
         // Sends a PUT request to the REST API to update the bodywork by ID.
         private void btnUpdateBody_Click(object sender, EventArgs e)
         {
-            if (serchedBodywork == null)
+            if (searchedBodywork == null)
             {
                 MessageBox.Show("Please search for a bodywork first.");
                 return;
@@ -83,15 +85,16 @@ namespace PClienteEstudiante.view.bodywork
             try
             {
                 // Update the selected bodywork object with the new data.
-                serchedBodywork.id = int.Parse(txtIdBody.Text);
-                serchedBodywork.name = txtNameBody.Text;
+                searchedBodywork.id = int.Parse(txtIdBody.Text);
+                searchedBodywork.name = txtNameBody.Text;
+                searchedBodywork.hasSunroof = boxSunroof.Checked;
 
                 var options = new RestClientOptions("http://localhost:8090");
                 var client = new RestClient(options);
-                var request = new RestRequest($"/bodyworks/update/{serchedBodywork.id}", Method.Put);
+                var request = new RestRequest($"/bodyworks/update/{searchedBodywork.id}", Method.Put);
 
                 // Serialize the updated bodywork object into JSON.
-                string bodyworkJson = JsonSerializer.Serialize(serchedBodywork);
+                string bodyworkJson = JsonSerializer.Serialize(searchedBodywork);
                 request.AddJsonBody(bodyworkJson);
 
                 var response = client.Execute(request);
@@ -99,7 +102,7 @@ namespace PClienteEstudiante.view.bodywork
                 if (response.IsSuccessful)
                 {
                     MessageBox.Show("Bodywork updated successfully.");
-                    serchedBodywork = null; // Reset the selected bodywork
+                    searchedBodywork = null; // Reset the selected bodywork
                     clearField();
                     btnReset.PerformClick();
                 }
@@ -119,23 +122,26 @@ namespace PClienteEstudiante.view.bodywork
         {
             clearField();
             enableIdField();
-            disableNameField();
+            disableFields();
         }
 
         private void clearField()
         {
             txtIdBody.Text = "";
             txtNameBody.Text = "";
+            boxSunroof.Checked = false;
         }
 
         private void enableIdField()
         {
             txtIdBody.ReadOnly = false;
+
         }
 
-        private void disableNameField()
+        private void disableFields()
         {
             txtNameBody.ReadOnly = true;
+            boxSunroof.Enabled = false;
         }
     }
 }

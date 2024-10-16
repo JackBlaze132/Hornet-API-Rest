@@ -46,6 +46,7 @@ namespace PClienteEstudiante.view.automobile
                             auto.absBrake,
                             bodyworkName = string.Join(", ", auto.bodyworks.Select(b => b.name)), // Join names with commas
                             bodyworkId = string.Join(", ", auto.bodyworks.Select(b => b.id)), // Join ids with commas
+                            bodyworkSunroof = auto.bodyworks.Any(b => b.hasSunroof), // Join sunroof values with commas
                             auto.arrivalDate
                         }).ToList();
 

@@ -37,6 +37,7 @@ namespace PClienteEstudiante.view.bodywork
                     {
                         // Display the bodywork name in the corresponding text box.
                         txtNameBody.Text = searchedBodywork.name;
+                        boxSunroof.Checked = searchedBodywork.hasSunroof;
                     }
                     else
                     {
@@ -86,6 +87,7 @@ namespace PClienteEstudiante.view.bodywork
                         // Clear the text boxes and reset the selected bodywork.
                         txtIdBody.Text = "";
                         txtNameBody.Text = "";
+                        boxSunroof.Checked = false;
                         searchedBodywork = null;
                     }
                     else
