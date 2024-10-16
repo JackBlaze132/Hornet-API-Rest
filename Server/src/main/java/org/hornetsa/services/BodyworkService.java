@@ -86,6 +86,7 @@ public class BodyworkService {
 
         // Update the name of the bodywork
         bodyworkToUpdate.setName(bodywork.getName());
+        bodyworkToUpdate.setHasSunroof(bodywork.isHasSunroof());
     }
 
     // Finds and returns a bodywork by its ID

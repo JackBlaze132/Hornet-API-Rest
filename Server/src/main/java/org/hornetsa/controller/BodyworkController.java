@@ -26,10 +26,17 @@ public class BodyworkController {
 
     // GET endpoint to retrieve all bodyworks
     @GetMapping("/get")
-    public ResponseEntity<List<Bodywork>> getAllBodyworks() {
+    public ResponseEntity<List<Bodywork>> getAllBodyworks(@RequestParam(value = "hasSunroof", required = false) Boolean hasSunroof) {
         BodyworkService bodyworkService = BodyworkService.getBodyworkService();  // Get singleton instance
 
         List<Bodywork> bodyworks = bodyworkService.getBodyworks();  // Retrieve all bodyworks
+
+        // Filter bodyworks by sunroof availability if specified
+        if (hasSunroof != null){
+            bodyworks = bodyworks.stream()
+                    .filter(b -> b.isHasSunroof() == hasSunroof)
+                    .collect(Collectors.toList());
+        }
 
         // Return 404 if no bodyworks are found
         if (bodyworks == null || bodyworks.isEmpty()) return ResponseEntity.notFound().build();
