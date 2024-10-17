@@ -12,4 +12,5 @@ import lombok.RequiredArgsConstructor;
 public class Bodywork {
     private int id;
     private String name;
+    private boolean hasSunroof;
 }

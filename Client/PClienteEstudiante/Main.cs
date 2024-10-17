@@ -1,4 +1,6 @@
 ﻿using PClienteEstudiante.view;
+using PClienteEstudiante.view.automobile;
+using PClienteEstudiante.view.bodywork;
 using PClienteEstudiante.view.motorcycle;
 using RestSharp;
 using System;
@@ -58,6 +60,66 @@ namespace PClienteEstudiante
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Main.ActiveForm.Close();
+        }
+
+        private void listBodyworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIListBodywork gUIListBodywork = new GUIListBodywork();
+            gUIListBodywork.Show();
+        }
+
+        private void addBodyworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIAddBodywork gUIAddBodywork = new GUIAddBodywork();
+            gUIAddBodywork.Show();
+        }
+
+        private void searchBodyworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUISearchBodywork gUISearchBodywork = new GUISearchBodywork();
+            gUISearchBodywork.Show();
+        }
+
+        private void deleteBodyworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIDeleteBodywork gUIDeleteBodywork = new GUIDeleteBodywork();
+            gUIDeleteBodywork.Show();
+        }
+
+        private void updateBodyworkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIUpdateBodywork gUIUpdateBodywork = new GUIUpdateBodywork();
+            gUIUpdateBodywork.Show();
+        }
+
+        private void addAutomobileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIAddAutomobile gUIAddAutomobile = new GUIAddAutomobile();
+            gUIAddAutomobile.Show();
+        }
+
+        private void searchAutomobileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUISearchAutomobile gUISearchAutomobile = new GUISearchAutomobile();
+            gUISearchAutomobile.Show();
+        }
+
+        private void deleteAutomobileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIDeleteAutomobile gUIDeleteAutomobile = new GUIDeleteAutomobile();
+            gUIDeleteAutomobile.Show();
+        }
+
+        private void updateAutomobileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIUpdateAutomobile gUIUpdateAutomobile = new GUIUpdateAutomobile();
+            gUIUpdateAutomobile.Show();
+        }
+
+        private void listAutomobileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GUIListAutomobile gUIListAutomobile = new GUIListAutomobile();
+            gUIListAutomobile.Show();
         }
     }
 }

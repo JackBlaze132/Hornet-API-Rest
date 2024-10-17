@@ -31,28 +31,31 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdMoto = new System.Windows.Forms.TextBox();
-            this.dataGridMoto = new System.Windows.Forms.DataGridView();
             this.btnSearchMoto = new System.Windows.Forms.Button();
             this.btnDeleteMoto = new System.Windows.Forms.Button();
-            this.idTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brandTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.snidTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.absTableColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.forktypeModelColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.helmetTableColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.arrivalDateTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridMoto)).BeginInit();
+            this.txtModelMotorcycle = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.datePickerMotorcycle = new System.Windows.Forms.DateTimePicker();
+            this.boxHelmet = new System.Windows.Forms.CheckBox();
+            this.boxABS = new System.Windows.Forms.CheckBox();
+            this.txtFroktype = new System.Windows.Forms.TextBox();
+            this.txtPriceMoto = new System.Windows.Forms.TextBox();
+            this.txtBrandMoto = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(492, 22);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(369, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(249, 31);
+            this.label1.Size = new System.Drawing.Size(202, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Delete Motorcycle";
             // 
@@ -60,49 +63,25 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(305, 122);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(229, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 20);
+            this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Id Moto:";
             // 
             // txtIdMoto
             // 
-            this.txtIdMoto.Location = new System.Drawing.Point(537, 117);
-            this.txtIdMoto.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIdMoto.Location = new System.Drawing.Point(403, 95);
             this.txtIdMoto.Name = "txtIdMoto";
-            this.txtIdMoto.Size = new System.Drawing.Size(499, 22);
+            this.txtIdMoto.Size = new System.Drawing.Size(375, 20);
             this.txtIdMoto.TabIndex = 2;
-            this.txtIdMoto.TextChanged += new System.EventHandler(this.txtIdMoto_TextChanged);
-            // 
-            // dataGridMoto
-            // 
-            this.dataGridMoto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridMoto.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idTableColumn,
-            this.brandTableColumn,
-            this.priceTableColumn,
-            this.snidTableColumn,
-            this.absTableColumn,
-            this.forktypeModelColumn,
-            this.helmetTableColumn,
-            this.arrivalDateTableColumn});
-            this.dataGridMoto.Location = new System.Drawing.Point(83, 192);
-            this.dataGridMoto.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridMoto.Name = "dataGridMoto";
-            this.dataGridMoto.RowHeadersWidth = 51;
-            this.dataGridMoto.Size = new System.Drawing.Size(1125, 369);
-            this.dataGridMoto.TabIndex = 3;
-            this.dataGridMoto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridMoto_CellContentClick);
             // 
             // btnSearchMoto
             // 
             this.btnSearchMoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchMoto.Location = new System.Drawing.Point(347, 596);
-            this.btnSearchMoto.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearchMoto.Location = new System.Drawing.Point(260, 484);
             this.btnSearchMoto.Name = "btnSearchMoto";
-            this.btnSearchMoto.Size = new System.Drawing.Size(216, 70);
+            this.btnSearchMoto.Size = new System.Drawing.Size(162, 57);
             this.btnSearchMoto.TabIndex = 4;
             this.btnSearchMoto.Text = "Search";
             this.btnSearchMoto.UseVisualStyleBackColor = true;
@@ -111,104 +90,170 @@
             // btnDeleteMoto
             // 
             this.btnDeleteMoto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteMoto.Location = new System.Drawing.Point(729, 596);
-            this.btnDeleteMoto.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteMoto.Location = new System.Drawing.Point(547, 484);
             this.btnDeleteMoto.Name = "btnDeleteMoto";
-            this.btnDeleteMoto.Size = new System.Drawing.Size(219, 70);
+            this.btnDeleteMoto.Size = new System.Drawing.Size(164, 57);
             this.btnDeleteMoto.TabIndex = 5;
             this.btnDeleteMoto.Text = "Delete";
             this.btnDeleteMoto.UseVisualStyleBackColor = true;
             this.btnDeleteMoto.Click += new System.EventHandler(this.btnDeleteMoto_Click);
             // 
-            // idTableColumn
+            // txtModelMotorcycle
             // 
-            this.idTableColumn.DataPropertyName = "id";
-            this.idTableColumn.HeaderText = "Id";
-            this.idTableColumn.MinimumWidth = 6;
-            this.idTableColumn.Name = "idTableColumn";
-            this.idTableColumn.ReadOnly = true;
-            this.idTableColumn.Width = 125;
+            this.txtModelMotorcycle.Location = new System.Drawing.Point(432, 215);
+            this.txtModelMotorcycle.Name = "txtModelMotorcycle";
+            this.txtModelMotorcycle.ReadOnly = true;
+            this.txtModelMotorcycle.Size = new System.Drawing.Size(376, 20);
+            this.txtModelMotorcycle.TabIndex = 48;
             // 
-            // brandTableColumn
+            // label9
             // 
-            this.brandTableColumn.DataPropertyName = "brand";
-            this.brandTableColumn.HeaderText = "Brand";
-            this.brandTableColumn.MinimumWidth = 6;
-            this.brandTableColumn.Name = "brandTableColumn";
-            this.brandTableColumn.ReadOnly = true;
-            this.brandTableColumn.Width = 125;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(229, 379);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 16);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Arrival Date";
             // 
-            // priceTableColumn
+            // datePickerMotorcycle
             // 
-            this.priceTableColumn.DataPropertyName = "price";
-            this.priceTableColumn.HeaderText = "Price";
-            this.priceTableColumn.MinimumWidth = 6;
-            this.priceTableColumn.Name = "priceTableColumn";
-            this.priceTableColumn.ReadOnly = true;
-            this.priceTableColumn.Width = 125;
+            this.datePickerMotorcycle.Enabled = false;
+            this.datePickerMotorcycle.Location = new System.Drawing.Point(432, 375);
+            this.datePickerMotorcycle.Name = "datePickerMotorcycle";
+            this.datePickerMotorcycle.Size = new System.Drawing.Size(200, 20);
+            this.datePickerMotorcycle.TabIndex = 46;
             // 
-            // snidTableColumn
+            // boxHelmet
             // 
-            this.snidTableColumn.DataPropertyName = "snid";
-            this.snidTableColumn.HeaderText = "SNID";
-            this.snidTableColumn.MinimumWidth = 6;
-            this.snidTableColumn.Name = "snidTableColumn";
-            this.snidTableColumn.ReadOnly = true;
-            this.snidTableColumn.Width = 125;
+            this.boxHelmet.AutoSize = true;
+            this.boxHelmet.Enabled = false;
+            this.boxHelmet.Location = new System.Drawing.Point(432, 336);
+            this.boxHelmet.Name = "boxHelmet";
+            this.boxHelmet.Size = new System.Drawing.Size(15, 14);
+            this.boxHelmet.TabIndex = 45;
+            this.boxHelmet.UseVisualStyleBackColor = true;
             // 
-            // absTableColumn
+            // boxABS
             // 
-            this.absTableColumn.DataPropertyName = "absBrake";
-            this.absTableColumn.HeaderText = "ABS";
-            this.absTableColumn.MinimumWidth = 6;
-            this.absTableColumn.Name = "absTableColumn";
-            this.absTableColumn.ReadOnly = true;
-            this.absTableColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.absTableColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.absTableColumn.Width = 125;
+            this.boxABS.AutoSize = true;
+            this.boxABS.Enabled = false;
+            this.boxABS.Location = new System.Drawing.Point(432, 254);
+            this.boxABS.Name = "boxABS";
+            this.boxABS.Size = new System.Drawing.Size(15, 14);
+            this.boxABS.TabIndex = 44;
+            this.boxABS.UseVisualStyleBackColor = true;
             // 
-            // forktypeModelColumn
+            // txtFroktype
             // 
-            this.forktypeModelColumn.DataPropertyName = "forkType";
-            this.forktypeModelColumn.HeaderText = "Forktype";
-            this.forktypeModelColumn.MinimumWidth = 6;
-            this.forktypeModelColumn.Name = "forktypeModelColumn";
-            this.forktypeModelColumn.ReadOnly = true;
-            this.forktypeModelColumn.Width = 125;
+            this.txtFroktype.Location = new System.Drawing.Point(432, 294);
+            this.txtFroktype.Name = "txtFroktype";
+            this.txtFroktype.ReadOnly = true;
+            this.txtFroktype.Size = new System.Drawing.Size(376, 20);
+            this.txtFroktype.TabIndex = 43;
             // 
-            // helmetTableColumn
+            // txtPriceMoto
             // 
-            this.helmetTableColumn.DataPropertyName = "helmetIncluded";
-            this.helmetTableColumn.HeaderText = "Helmet Included";
-            this.helmetTableColumn.MinimumWidth = 6;
-            this.helmetTableColumn.Name = "helmetTableColumn";
-            this.helmetTableColumn.ReadOnly = true;
-            this.helmetTableColumn.Width = 125;
+            this.txtPriceMoto.Location = new System.Drawing.Point(432, 179);
+            this.txtPriceMoto.Name = "txtPriceMoto";
+            this.txtPriceMoto.ReadOnly = true;
+            this.txtPriceMoto.Size = new System.Drawing.Size(376, 20);
+            this.txtPriceMoto.TabIndex = 42;
             // 
-            // arrivalDateTableColumn
+            // txtBrandMoto
             // 
-            this.arrivalDateTableColumn.DataPropertyName = "arrivalDate";
-            this.arrivalDateTableColumn.HeaderText = "Arrival Date";
-            this.arrivalDateTableColumn.MinimumWidth = 6;
-            this.arrivalDateTableColumn.Name = "arrivalDateTableColumn";
-            this.arrivalDateTableColumn.ReadOnly = true;
-            this.arrivalDateTableColumn.Width = 125;
+            this.txtBrandMoto.Location = new System.Drawing.Point(432, 139);
+            this.txtBrandMoto.Name = "txtBrandMoto";
+            this.txtBrandMoto.ReadOnly = true;
+            this.txtBrandMoto.Size = new System.Drawing.Size(376, 20);
+            this.txtBrandMoto.TabIndex = 41;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(229, 338);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(156, 16);
+            this.label8.TabIndex = 40;
+            this.label8.Text = "Does it include a helmet?";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(229, 299);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 16);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "ForkType:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(229, 256);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(119, 16);
+            this.label6.TabIndex = 38;
+            this.label6.Text = "Does it have ABS?";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(229, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 16);
+            this.label5.TabIndex = 37;
+            this.label5.Text = "SNID";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(229, 179);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 16);
+            this.label4.TabIndex = 36;
+            this.label4.Text = "Price:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(229, 144);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(46, 16);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Brand:";
             // 
             // GUIDeleteMotorcycle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 704);
+            this.ClientSize = new System.Drawing.Size(964, 572);
+            this.Controls.Add(this.txtModelMotorcycle);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.datePickerMotorcycle);
+            this.Controls.Add(this.boxHelmet);
+            this.Controls.Add(this.boxABS);
+            this.Controls.Add(this.txtFroktype);
+            this.Controls.Add(this.txtPriceMoto);
+            this.Controls.Add(this.txtBrandMoto);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDeleteMoto);
             this.Controls.Add(this.btnSearchMoto);
-            this.Controls.Add(this.dataGridMoto);
             this.Controls.Add(this.txtIdMoto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "GUIDeleteMotorcycle";
             this.Text = "Delete Motorcycle";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridMoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,16 +264,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtIdMoto;
-        private System.Windows.Forms.DataGridView dataGridMoto;
         private System.Windows.Forms.Button btnSearchMoto;
         private System.Windows.Forms.Button btnDeleteMoto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brandTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn snidTableColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn absTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn forktypeModelColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn helmetTableColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn arrivalDateTableColumn;
+        private System.Windows.Forms.TextBox txtModelMotorcycle;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker datePickerMotorcycle;
+        private System.Windows.Forms.CheckBox boxHelmet;
+        private System.Windows.Forms.CheckBox boxABS;
+        private System.Windows.Forms.TextBox txtFroktype;
+        private System.Windows.Forms.TextBox txtPriceMoto;
+        private System.Windows.Forms.TextBox txtBrandMoto;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }

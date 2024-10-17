@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using RestSharp;
 using System.Text.Json;
 using System.Linq;
+using System.Net.Http;
 
 namespace PClienteEstudiante.view.motorcycle
 {
@@ -82,39 +83,66 @@ namespace PClienteEstudiante.view.motorcycle
             }
         }
 
-        private void Filter_Click(object sender, EventArgs e)
+        private async void Filter_Click(object sender, EventArgs e)
         {
-            if (allMotorcycles == null || allMotorcycles.Count == 0)
+            using (HttpClient client = new HttpClient())
             {
-                MessageBox.Show("No motorcycles available to filter.");
-                return;
-            }
+                // Construir la URL base del endpoint
+                string baseUrl = "http://localhost:8090/motorcycles/get";
+                List<string> queryParams = new List<string>();
 
-            var filteredMotorcycles = allMotorcycles.AsQueryable();
+                // Añadir filtro de Helmet Included si está seleccionado
+                if (checkedListBox1.GetItemChecked(0)) // "YES" Select
+                {
+                    queryParams.Add("helmetIncluded=true");
+                }
+                else if (checkedListBox1.GetItemChecked(1)) // "NOT" Select
+                {
+                    queryParams.Add("helmetIncluded=false");
+                }
 
-            // Filter Helmet Included
-            if (checkedListBox1.GetItemChecked(0)) // "YES" Select
-            {
-                filteredMotorcycles = filteredMotorcycles.Where(m => m.helmetIncluded == true);
-            }
-            else if (checkedListBox1.GetItemChecked(1)) // "NOT" Select
-            {
-                filteredMotorcycles = filteredMotorcycles.Where(m => m.helmetIncluded == false);
-            }
+                // Añadir filtro de ABS Brake si está seleccionado
+                if (checkedListBox2.GetItemChecked(0)) // "YES" Select
+                {
+                    queryParams.Add("absBrake=true");
+                }
+                else if (checkedListBox2.GetItemChecked(1)) // "NO" Select
+                {
+                    queryParams.Add("absBrake=false");
+                }
 
-            // Filter ABS Included
-            if (checkedListBox2.GetItemChecked(0)) // "YES" Select
-            {
-                filteredMotorcycles = filteredMotorcycles.Where(m => m.absBrake == true);
-            }
-            else if (checkedListBox2.GetItemChecked(1)) //"NO" Select
-            {
-                filteredMotorcycles = filteredMotorcycles.Where(m => m.absBrake == false);
-            }
+                // Construir la URL completa con los parámetros de consulta
+                string url = baseUrl;
+                if (queryParams.Count > 0)
+                {
+                    url += "?" + string.Join("&", queryParams);
+                }
 
-            dataGridMoto.DataSource = filteredMotorcycles.ToList();
-            dataGridMoto.Refresh();
+                try
+                {
+                    // Hacer la solicitud GET al servidor
+                    HttpResponseMessage response = await client.GetAsync(url);
 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Leer y deserializar la respuesta en una lista de motocicletas
+                        string responseData = await response.Content.ReadAsStringAsync();
+                        var motorcycles = System.Text.Json.JsonSerializer.Deserialize<List<Motorcycle>>(responseData);
+
+                        // Asignar los datos al DataGrid
+                        dataGridMoto.DataSource = motorcycles;
+                        dataGridMoto.Refresh();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No motorcycles found with the specified filters.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while filtering motorcycles: " + ex.Message);
+                }
+            }
         }
 
         private void label3_Click_1(object sender, EventArgs e)

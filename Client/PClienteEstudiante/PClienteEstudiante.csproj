@@ -86,6 +86,68 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="view\automobile\Automobile.cs" />
+    <Compile Include="view\automobile\GUIAddAutomobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\automobile\GUIAddAutomobile.Designer.cs">
+      <DependentUpon>GUIAddAutomobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\automobile\GUIDeleteAutomobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\automobile\GUIDeleteAutomobile.Designer.cs">
+      <DependentUpon>GUIDeleteAutomobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\automobile\GUIListAutomobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\automobile\GUIListAutomobile.Designer.cs">
+      <DependentUpon>GUIListAutomobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\automobile\GUISearchAutomobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\automobile\GUISearchAutomobile.Designer.cs">
+      <DependentUpon>GUISearchAutomobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\automobile\GUIUpdateAutomobile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\automobile\GUIUpdateAutomobile.Designer.cs">
+      <DependentUpon>GUIUpdateAutomobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\bodywork\Bodywork.cs" />
+    <Compile Include="view\bodywork\GUIAddBodywork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\bodywork\GUIAddBodywork.Designer.cs">
+      <DependentUpon>GUIAddBodywork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\bodywork\GUIDeleteBodywork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\bodywork\GUIDeleteBodywork.Designer.cs">
+      <DependentUpon>GUIDeleteBodywork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\bodywork\GUIUpdateBodywork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\bodywork\GUIUpdateBodywork.Designer.cs">
+      <DependentUpon>GUIUpdateBodywork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\bodywork\GUIListBodywork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\bodywork\GUIListBodywork.Designer.cs">
+      <DependentUpon>GUIListBodywork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="view\bodywork\GUISearchBodywork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="view\bodywork\GUISearchBodywork.Designer.cs">
+      <DependentUpon>GUISearchBodywork.cs</DependentUpon>
+    </Compile>
     <Compile Include="view\motorcycle\GUIAddMotorcycle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,11 +160,11 @@
     <Compile Include="view\motorcycle\GUIDeleteMotorcycle.Designer.cs">
       <DependentUpon>GUIDeleteMotorcycle.cs</DependentUpon>
     </Compile>
-    <Compile Include="view\motorcycle\GUIEditMotorcycle.cs">
+    <Compile Include="view\motorcycle\GUIUpdateMotorcycle.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="view\motorcycle\GUIEditMotorcycle.Designer.cs">
-      <DependentUpon>GUIEditMotorcycle.cs</DependentUpon>
+    <Compile Include="view\motorcycle\GUIUpdateMotorcycle.Designer.cs">
+      <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
     </Compile>
     <Compile Include="view\motorcycle\GUIListMotorcycle.cs">
       <SubType>Form</SubType>
@@ -115,12 +177,6 @@
     </Compile>
     <Compile Include="view\motorcycle\GUISearchMotorcycle.Designer.cs">
       <DependentUpon>GUISearchMotorcycle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="view\motorcycle\GUIUpdateMotorcycle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="view\motorcycle\GUIUpdateMotorcycle.Designer.cs">
-      <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
     </Compile>
     <Compile Include="view\motorcycle\Motorcycle.cs" />
     <EmbeddedResource Include="Main.resx">
@@ -135,23 +191,50 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="view\automobile\GUIAddAutomobile.resx">
+      <DependentUpon>GUIAddAutomobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\automobile\GUIDeleteAutomobile.resx">
+      <DependentUpon>GUIDeleteAutomobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\automobile\GUIListAutomobile.resx">
+      <DependentUpon>GUIListAutomobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\automobile\GUISearchAutomobile.resx">
+      <DependentUpon>GUISearchAutomobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\automobile\GUIUpdateAutomobile.resx">
+      <DependentUpon>GUIUpdateAutomobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\bodywork\GUIAddBodywork.resx">
+      <DependentUpon>GUIAddBodywork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\bodywork\GUIDeleteBodywork.resx">
+      <DependentUpon>GUIDeleteBodywork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\bodywork\GUIListBodywork.resx">
+      <DependentUpon>GUIListBodywork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\bodywork\GUISearchBodywork.resx">
+      <DependentUpon>GUISearchBodywork.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="view\bodywork\GUIUpdateBodywork.resx">
+      <DependentUpon>GUIUpdateBodywork.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="view\motorcycle\GUIAddMotorcycle.resx">
       <DependentUpon>GUIAddMotorcycle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\motorcycle\GUIDeleteMotorcycle.resx">
       <DependentUpon>GUIDeleteMotorcycle.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="view\motorcycle\GUIEditMotorcycle.resx">
-      <DependentUpon>GUIEditMotorcycle.cs</DependentUpon>
+    <EmbeddedResource Include="view\motorcycle\GUIUpdateMotorcycle.resx">
+      <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\motorcycle\GUIListMotorcycle.resx">
       <DependentUpon>GUIListMotorcycle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="view\motorcycle\GUISearchMotorcycle.resx">
       <DependentUpon>GUISearchMotorcycle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="view\motorcycle\GUIUpdateMotorcycle.resx">
-      <DependentUpon>GUIUpdateMotorcycle.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

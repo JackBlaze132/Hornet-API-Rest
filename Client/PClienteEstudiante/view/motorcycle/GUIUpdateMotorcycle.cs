@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using RestSharp;
 using System.Text.Json;
@@ -8,20 +7,13 @@ namespace PClienteEstudiante.view.motorcycle
 {
     public partial class GUIUpdateMotorcycle : Form
     {
-        private Motorcycle selectedMotorcycle;
+        private Motorcycle motorcycleToEdit;
 
         public GUIUpdateMotorcycle()
         {
             InitializeComponent();
         }
 
-        private void txtIdMoto_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void dataGridMoto_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
 
         private void btnSearchMoto_Click(object sender, EventArgs e)
         {
@@ -30,6 +22,7 @@ namespace PClienteEstudiante.view.motorcycle
             if (string.IsNullOrWhiteSpace(id))
             {
                 MessageBox.Show("Please enter a motorcycle ID.");
+                clearFields();
                 return;
             }
 
@@ -43,12 +36,19 @@ namespace PClienteEstudiante.view.motorcycle
 
                 if (response.IsSuccessful)
                 {
-                    selectedMotorcycle = JsonSerializer.Deserialize<Motorcycle>(response.Content);
+                    motorcycleToEdit = JsonSerializer.Deserialize<Motorcycle>(response.Content);
 
-                    if (selectedMotorcycle != null)
+                    if (motorcycleToEdit != null)
                     {
-                        dataGridMoto.DataSource = new List<Motorcycle> { selectedMotorcycle };
-                        dataGridMoto.Refresh();
+                        txtBrandMoto.Text = motorcycleToEdit.brand;
+                        txtPriceMoto.Text = motorcycleToEdit.price.ToString();
+                        txtModelMotorcycle.Text = motorcycleToEdit.snid;
+                        boxABS.Checked = motorcycleToEdit.absBrake;
+                        txtFroktype.Text = motorcycleToEdit.forkType;
+                        boxHelmet.Checked = motorcycleToEdit.helmetIncluded;
+                        datePickerMotorcycle.Value = motorcycleToEdit.arrivalDate;
+                        enableFields();
+                        txtIdMoto.ReadOnly = true;
                     }
                     else
                     {
@@ -64,23 +64,111 @@ namespace PClienteEstudiante.view.motorcycle
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+
         }
 
-        private void btnUpdateMoto_Click(object sender, EventArgs e)
+        private void btnSaveMoto_Click(object sender, EventArgs e)
         {
-            if (selectedMotorcycle == null)
+            var confirmResult = MessageBox.Show("Are you sure you want to update this motorcycle?",
+                                                "Confirm Update",
+                                                MessageBoxButtons.YesNo);
+
+            if (confirmResult == DialogResult.No)
             {
-                MessageBox.Show("Please search and select a motorcycle to update.");
+                MessageBox.Show("Update cancelled.");
                 return;
             }
 
-            GUIEditMotorcycle guiEditMotorcycle = new GUIEditMotorcycle(selectedMotorcycle);
-            var dialogResult = guiEditMotorcycle.ShowDialog();
-
-            if (dialogResult == DialogResult.OK)
+            try
             {
-                btnSearchMoto_Click(sender, e);
+                motorcycleToEdit.brand = txtBrandMoto.Text;
+                motorcycleToEdit.price = decimal.Parse(txtPriceMoto.Text);
+                motorcycleToEdit.snid = txtModelMotorcycle.Text;
+                motorcycleToEdit.absBrake = boxABS.Checked;
+                motorcycleToEdit.forkType = txtFroktype.Text;
+                motorcycleToEdit.helmetIncluded = boxHelmet.Checked;
+                motorcycleToEdit.arrivalDate = datePickerMotorcycle.Value;
+
+                var options = new RestClientOptions("http://localhost:8090");
+                var client = new RestClient(options);
+                var request = new RestRequest($"/motorcycles/update/{motorcycleToEdit.id}", Method.Put);
+                request.AddJsonBody(motorcycleToEdit);
+
+                var response = client.Execute(request);
+
+                if (response.IsSuccessful)
+                {
+                    MessageBox.Show("Motorcycle updated successfully.");
+                    this.DialogResult = DialogResult.OK;
+                    clearFields();
+                    disableFields();
+                    enableIdField();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update the motorcycle.");
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+
+        private void txtIdMoto_TextChanged(object sender, EventArgs e) { }
+        private void txtBrandMoto_TextChanged(object sender, EventArgs e) { }
+        private void txtPriceMoto_TextChanged(object sender, EventArgs e) { }
+        private void txtModelMotorcycle_TextChanged(object sender, EventArgs e) { }
+        private void boxABS_CheckedChanged(object sender, EventArgs e) { }
+        private void txtFroktype_TextChanged(object sender, EventArgs e) { }
+        private void boxHelmet_CheckedChanged(object sender, EventArgs e) { }
+        private void datePickerMotorcycle_ValueChanged(object sender, EventArgs e) { }
+
+        private void enableFields()
+        {
+            txtBrandMoto.ReadOnly = false;
+            txtPriceMoto.ReadOnly = false;
+            txtModelMotorcycle.ReadOnly = false;
+            txtFroktype.ReadOnly = false;
+            boxABS.Enabled = true;
+            boxHelmet.Enabled = true;
+            datePickerMotorcycle.Enabled = true;
+        }
+
+        public void enableIdField()
+        {
+            txtIdMoto.ReadOnly = false;
+        }
+
+        private void disableFields()
+        {
+            txtBrandMoto.ReadOnly = true;
+            txtPriceMoto.ReadOnly = true;
+            txtModelMotorcycle.ReadOnly = true;
+            txtFroktype.ReadOnly = true;
+            boxABS.Enabled = false;
+            boxHelmet.Enabled = false;
+            datePickerMotorcycle.Enabled = false;
+        }
+
+        private void clearFields()
+        {
+            txtIdMoto.Text = "";
+            txtBrandMoto.Text = "";
+            txtPriceMoto.Text = "";
+            txtModelMotorcycle.Text = "";
+            txtFroktype.Text = "";
+            boxABS.Checked = false;
+            boxHelmet.Checked = false;
+            datePickerMotorcycle.Text = "";
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            enableIdField();
+            clearFields();
+            disableFields();
         }
     }
 }
