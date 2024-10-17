@@ -1,0 +1,42 @@
+---
+import SidebarSvelte from './svelte/Sidebar.svelte';
+
+const logo = '../assets/images/logo.png';
+const options = [
+  {
+    name: 'Bodyworks',
+    icon: 'tabler:box',
+    subOptions: [
+      { name: 'Register', icon: 'tabler:hexagon-plus', path: '/automobiles/register', },
+      { name: 'List', icon: 'tabler:list' },
+      { name: 'Search', icon: 'tabler:search' },
+      { name: 'Update', icon: 'tabler:refresh' },
+      { name: 'Delete', icon: 'tabler:trash-x' }
+    ]
+  },
+  {
+    name: 'Automobile',
+    icon: 'tabler:car-suv',
+    subOptions: [
+    { name: 'Register', icon: 'tabler:hexagon-plus' },
+      { name: 'List', icon: 'tabler:list' , path: "/automobiles/listall"},
+      { name: 'Search', icon: 'tabler:search' },
+      { name: 'Update', icon: 'tabler:refresh' },
+      { name: 'Delete', icon: 'tabler:trash-x' }
+    ]
+  },
+  {
+    name: 'Motorcycle',
+    icon: 'tabler:motorbike',
+    subOptions: [
+    { name: 'Register', icon: 'tabler:hexagon-plus' },
+      { name: 'List', icon: 'tabler:list' },
+      { name: 'Search', icon: 'tabler:search' },
+      { name: 'Update', icon: 'tabler:refresh' },
+      { name: 'Delete', icon: 'tabler:trash-x' }
+    ]
+  }
+];
+---
+
+<SidebarSvelte {logo} {options} client:load />

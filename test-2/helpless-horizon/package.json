@@ -1,0 +1,30 @@
+{
+  "name": "helpless-horizon",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/svelte": "^5.7.2",
+    "@astrojs/tailwind": "^5.1.2",
+    "astro": "^4.16.4",
+    "astro-icon": "^1.1.1",
+    "astro-iconify": "^1.2.0",
+    "carbon-icons-svelte": "^12.12.0",
+    "svelte": "^4.2.19",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@iconify-json/tabler": "^1.2.5",
+    "@iconify/iconify": "^3.1.1",
+    "@iconify/svelte": "^4.0.2",
+    "unplugin-auto-import": "^0.18.3"
+  }
+}
