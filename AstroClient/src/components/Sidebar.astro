@@ -1,0 +1,42 @@
+---
+import SidebarReact from './react/Sidebar.tsx'; // Ajusta la ruta según la ubicación de tu componente Sidebar.tsx
+
+const logo = '../assets/images/logo.png';
+const options = [
+  {
+    name: 'Bodyworks',
+    icon: 'tabler:box',
+    subOptions: [
+      { name: 'Register', icon: 'tabler:hexagon-plus', path: '/bodyworks/register' },
+      { name: 'List', icon: 'tabler:list', path:'/bodyworks/list' },
+      { name: 'Search', icon: 'tabler:search' },
+      { name: 'Update', icon: 'tabler:refresh' },
+      { name: 'Delete', icon: 'tabler:trash-x' }
+    ]
+  },
+  {
+    name: 'Automobile',
+    icon: 'tabler:car-suv',
+    subOptions: [
+      { name: 'Register', icon: 'tabler:hexagon-plus', path: '/automobiles/register' },
+      { name: 'List', icon: 'tabler:list', path:'/automobiles/list'},
+      { name: 'Search', icon: 'tabler:search' },
+      { name: 'Update', icon: 'tabler:refresh' },
+      { name: 'Delete', icon: 'tabler:trash-x' }
+    ]
+  },
+  {
+    name: 'Motorcycle',
+    icon: 'tabler:motorbike',
+    subOptions: [
+      { name: 'Register', icon: 'tabler:hexagon-plus' },
+      { name: 'List', icon: 'tabler:list', path:'/motorcycles/list' },
+      { name: 'Search', icon: 'tabler:search' },
+      { name: 'Update', icon: 'tabler:refresh' },
+      { name: 'Delete', icon: 'tabler:trash-x' }
+    ]
+  }
+];
+---
+
+<SidebarReact logoSrc={logo} options={options} client:load></SidebarReact>
