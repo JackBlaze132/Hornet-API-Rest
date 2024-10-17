@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { Input, Button, Spacer, Checkbox } from '@nextui-org/react';
+import { Input, Button, Spacer, Checkbox, Select, SelectItem } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
+const bodies: { value: number; label: string }[] = [];
 
-interface FormMotorcycleProps {
+
+interface FormProps {
   endpoint: string;
-  fields: { name: string, type: string, placeholder: string }[];
+  fields: { name: string, type: string, placeholder: string, options?: { value: string | number, label: string }[] }[];
 }
 
-const FormMotorcycle: React.FC<FormMotorcycleProps> = ({ endpoint, fields }) => {
+const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === 'checkbox' ? checked : value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    if (type === 'checkbox' && e.target instanceof HTMLInputElement) {
+      setFormData({ ...formData, [name]: e.target.checked });
+    } else if (type === 'select-one' && e.target instanceof HTMLSelectElement) {
+      setFormData({ ...formData, [name]: [value] });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -38,6 +46,27 @@ const FormMotorcycle: React.FC<FormMotorcycleProps> = ({ endpoint, fields }) => 
             >
               {field.placeholder}
             </Checkbox>
+          ) : field.type === 'select' ? (
+            <Select
+              name={field.name}
+              value={formData[field.name] || ''}
+              onChange={handleChange}
+              fullWidth
+            >
+              {field.options ? (
+                field.options.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))
+              ) : (
+                bodies.map((body) => (
+                  <SelectItem key={body.value} value={body.value}>
+                    {body.label}
+                  </SelectItem>
+                ))
+              )}
+            </Select>
           ) : (
             <Input
               type={field.type}
@@ -59,4 +88,4 @@ const FormMotorcycle: React.FC<FormMotorcycleProps> = ({ endpoint, fields }) => 
   );
 };
 
-export default FormMotorcycle;
+export default Form;

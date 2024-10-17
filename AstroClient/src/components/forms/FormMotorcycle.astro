@@ -1,6 +1,6 @@
 ---
 import { useState } from 'react';
-import FormMotorcycle from '@components/react/Form'; // Ajusta la ruta según sea necesario
+import Form from '@components/react/Form'; // Ajusta la ruta según sea necesario
 import API from '@utils/api';
 
 const endpoint = API.POST_MOTORCYCLES; // Define el endpoint que quieres usar
@@ -17,5 +17,5 @@ const fields = [
 ---
 
 <div class="p-4 m-4 rounded-lg shadow-lg">
-  <FormMotorcycle client:load endpoint={endpoint} fields={fields} />
+  <Form client:load endpoint={endpoint} fields={fields} />
 </div>
