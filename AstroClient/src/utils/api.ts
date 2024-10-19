@@ -63,16 +63,25 @@ class API{
     public getFullUrl(endpoint: string): string {
       return this.API_BASE_URL + endpoint;
     }
-  public async get(endpoint: string) {
-    try {
-      const response = await fetch(this.getFullUrl(endpoint));
-      const data = await response.json();
-      return Array.isArray(data) ? data : [data];
-    } catch (error) {
-      console.error(`Error fetching ${endpoint}:`, error);
-      throw error;
+    public async get(endpoint: string, params?: { [key: string]: any }) {
+      try {
+        const url = new URL(this.getFullUrl(endpoint));
+        if (params) {
+          Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        }
+        const response = await fetch(url.toString(), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        return Array.isArray(data) ? data : [data];
+      } catch (error) {
+        console.error(`Error fetching ${endpoint}:`, error);
+        throw error;
+      }
     }
-  }
 
   public async post(endpoint: string, data: any) {
     try {
@@ -90,7 +99,7 @@ class API{
     }
   }
 
-  public async patch(endpoint: string, data: any) {
+  public async put(endpoint: string, data: any) {
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'PUT',

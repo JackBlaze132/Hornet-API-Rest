@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Input, Button, Spacer, Checkbox, Select, SelectItem } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
-const bodies: { value: number; label: string }[] = [];
-
-
+ const bodies = [
+  {value: "", label:""}
+ ]
 interface FormProps {
   endpoint: string;
   fields: { name: string, type: string, placeholder: string, options?: { value: string | number, label: string }[] }[];
@@ -16,7 +16,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
     const { name, value, type } = e.target;
     if (type === 'checkbox' && e.target instanceof HTMLInputElement) {
       setFormData({ ...formData, [name]: e.target.checked });
-    } else if (type === 'select-one' && e.target instanceof HTMLSelectElement) {
+    } else if (name === 'bodyworks') {
       setFormData({ ...formData, [name]: [value] });
     } else {
       setFormData({ ...formData, [name]: value });
