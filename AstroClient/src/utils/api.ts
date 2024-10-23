@@ -3,6 +3,8 @@ class API{
   private readonly API_BASE_URL: string = 'http://localhost:8090/';
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
+
+  public readonly MOTORCYCLES:string="motorcycles"
   //----[GET]----
   public readonly GET_BODYWORKS:string='bodyworks/get';
   public readonly GET_AUTOMOBILES:string='automobiles/get';

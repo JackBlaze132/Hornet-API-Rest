@@ -9,7 +9,7 @@ const title = "Motorcycle"; // Define el título de la tabla
 
 const fetchMotorcycles = async () => {
   try {
-    const response = await API.get(API.GET_MOTORCYCLES); // Utiliza la clase API
+    const response = await API.get(API.MOTORCYCLES); // Utiliza la clase API
     console.log('API response:', response); // Verificar la respuesta de la API
     items = response; // Asigna directamente la respuesta a items
     headers = Object.keys(response[0]); // Asigna las claves del primer objeto como encabezados

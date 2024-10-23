@@ -26,7 +26,7 @@ public class MotorcycleController {
         return "motorcycle Service OK!";
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public ResponseEntity<List<Motorcycle>> getAllMotorcycles(@RequestParam(value = "helmetIncluded", required = false) Boolean helmetIncluded, @RequestParam(value = "absBrake", required = false) Boolean absBrake) {
         MotorcycleService motorcycleService = MotorcycleService.getMotorcycleService();
 

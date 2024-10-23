@@ -51,18 +51,19 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
               name={field.name}
               value={formData[field.name] || ''}
               onChange={handleChange}
+              label={field.placeholder}
               fullWidth
             >
               {field.options ? (
                 field.options.map((option) => (
-                  <SelectItem key={option.value} value={option.value}>
-                    {option.label}
+                  <SelectItem key={option.value} value={option.value} textValue={option.label}>
+                 
                   </SelectItem>
                 ))
               ) : (
                 bodies.map((body) => (
-                  <SelectItem key={body.value} value={body.value}>
-                    {body.label}
+                  <SelectItem key={body.value} value={body.value} textValue={body.label}>
+           
                   </SelectItem>
                 ))
               )}

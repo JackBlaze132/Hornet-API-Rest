@@ -1,0 +1,31 @@
+---
+import UpdateForm from '@components/react/Update';
+import API from '@utils/api';
+
+let bodyworks: any[] = [];
+
+const fetchBodyworks = async () => {
+  try {
+    const response = await API.get(API.GET_BODYWORKS);
+    bodyworks = response;
+  } catch (error) {
+    console.error('Error fetching bodyworks:', error);
+  }
+};
+
+await fetchBodyworks();
+
+const endpoint = API.PUT_AUTOMOBILES;
+const searchEndpoint = API.SEARCH_AUTOMOBILE;
+const fields = [
+  { name: 'id', type: 'number', placeholder: 'ID' },
+  { name: 'brand', type: 'text', placeholder: 'Brand' },
+  { name: 'price', type: 'number', placeholder: 'Price' },
+  { name: 'snid', type: 'text', placeholder: 'SNID' },
+  { name: 'absBrake', type: 'checkbox', placeholder: 'ABS Brake' },
+  { name: 'bodyworks', type: 'select', placeholder: 'Bodywork', options: bodyworks.map(bw => ({ value: bw.id, label: bw.name })) },
+  { name: 'arrivalDate', type: 'datetime-local', placeholder: 'Arrival Date' },
+];
+---
+
+<UpdateForm client:load endpoint={endpoint} fields={fields} searchEndpoint={searchEndpoint} />
