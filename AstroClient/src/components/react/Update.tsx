@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button, Spacer, Checkbox, Select, SelectItem } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
-import type { getConfigFileParsingDiagnostics } from 'typescript';
 
 interface UpdateFormProps {
   endpoint: string;
   fields: { name: string, type: string, placeholder: string, options?: { value: string | number, label: string }[] }[];
   searchEndpoint: string;
+  bodyworks?: { value: string | number, label: string }[]; // Hacer que bodyworks sea opcional
 }
 
-const bodies = [
-  { value: '', label: '', name:'', placehoder: '' },
-
-  // Agrega más opciones según sea necesario
-];
-
-const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoint }) => {
+const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoint, bodyworks }) => {
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
   const [searchId, setSearchId] = useState<string>('');
 
@@ -31,7 +25,14 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
     try {
       const result = await API.get(searchEndpoint, { id: searchId });
       if (result.length > 0) {
-        setFormData(result[0]);
+        const item = result[0];
+        setFormData(item);
+        if (item.bodyworks && item.bodyworks.length > 0) {
+          setFormData((prevData) => ({
+            ...prevData,
+            bodyworks: item.bodyworks[0].id
+          }));
+        }
       } else {
         alert('Item not found');
       }
@@ -51,11 +52,9 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
   };
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const {name, value} = e.target;
-    if (name === 'bodyworks') {
-      setFormData({...formData, [name]: [value]})
-    }
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,25 +91,16 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
             ) : field.type === 'select' ? (
               <Select
                 name={field.name}
-                defaultSelectedKeys={formData[field.name]}
                 value={formData[field.name] || ''}
                 onChange={handleSelect}
                 label={field.placeholder}
                 fullWidth
               >
-                {field.options ? (
-                  field.options.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))
-                ) : (
-                  bodies.map((body) => (
-                    <SelectItem key={body.value} value={body.value}>
-                      {body.label}
-                    </SelectItem>
-                  ))
-                )}
+                {(bodyworks || []).map((body) => (
+                  <SelectItem key={body.value} value={body.value}>
+                    {body.label}
+                  </SelectItem>
+                ))}
               </Select>
             ) : (
               <Input

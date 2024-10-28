@@ -57,7 +57,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
               {field.options ? (
                 field.options.map((option) => (
                   <SelectItem key={option.value} value={option.value} textValue={option.label}>
-                 
+                    {option.label}
                   </SelectItem>
                 ))
               ) : (
