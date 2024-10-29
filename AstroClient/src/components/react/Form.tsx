@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Input, Button, Spacer, Checkbox, Select, SelectItem } from '@nextui-org/react';
+import { Icon } from '@iconify/react/dist/iconify.js';
+import { Input, Button, Spacer, Checkbox, Select, SelectItem, DatePicker } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
+import { format } from 'date-fns';
+
  const bodies = [
   {value: "", label:""}
  ]
+
 interface FormProps {
   endpoint: string;
   fields: { name: string, type: string, placeholder: string, options?: { value: string | number, label: string }[] }[];
@@ -23,6 +27,18 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
     }
   };
 
+  const handleDateChange = (date: any, name: string) => {
+    if (date) {
+      // Convertir la fecha a formato ISO
+      console.log(date)
+      const isoDate = format(date, "yyyy-mm-dd'T'HH:mm:ss");
+      console.log(isoDate);
+      setFormData({ ...formData, [name]: isoDate });
+    } else {
+      setFormData({ ...formData, [name]: null });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault(); // Evitar la recarga de la página
     console.log('Form data before submit:', formData); // Verificar los datos del formulario
@@ -33,6 +49,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
       console.error('Error submitting form:', error);
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -68,6 +85,18 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
                 ))
               )}
             </Select>
+          ) : field.type === 'datetime-local' ?(
+            <DatePicker
+              calendarProps={{
+                color: "danger"
+              }}
+              name={field.name}
+              onChange={(date) => handleDateChange(date, field.name)} // Cambiado aquí
+              label={field.placeholder}
+              showMonthAndYearPickers
+              granularity='minute'
+              selectorIcon={<Icon icon="tabler:calendar-clock" />}
+            />
           ) : (
             <Input
               type={field.type}
@@ -77,6 +106,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
               fullWidth
               isClearable
               placeholder={field.placeholder}
+  
             />
           )}
           <Spacer y={1} />
