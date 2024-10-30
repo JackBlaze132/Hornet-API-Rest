@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Icon } from '@iconify/react/dist/iconify.js';
-import { Input, Button, Spacer, Checkbox, Select, SelectItem, DatePicker } from '@nextui-org/react';
+import { Input, Button, Spacer, Checkbox, Select, SelectItem, DatePicker, type DateValue } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
  const bodies = [
   {value: "", label:""}
@@ -15,6 +15,7 @@ interface FormProps {
 
 const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
+  const [dateValue, setDateValue] = useState<DateValue | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
@@ -27,19 +28,22 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
     }
   };
 
-  const handleDateChange = (date: any, name: string) => {
+  const handleDateChange = (date: DateValue | null, name: string) => {
     if (date) {
       // Convertir la fecha a formato ISO
-      console.log(date)
-      const isoDate = format(date, "yyyy-mm-dd'T'HH:mm:ss");
+      console.log(typeof(date))
+      const cluedate = new Date(date.toString())
+      const isoDate = format(cluedate, "yyyy-mm-dd'T'HH:mm:ss");
       console.log(isoDate);
       setFormData({ ...formData, [name]: isoDate });
+      setDateValue(date);
     } else {
       setFormData({ ...formData, [name]: null });
-    }
+    } 
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+    
     e.preventDefault(); // Evitar la recarga de la página
     console.log('Form data before submit:', formData); // Verificar los datos del formulario
     try {
@@ -90,6 +94,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
               calendarProps={{
                 color: "danger"
               }}
+              value={dateValue || null}
               name={field.name}
               onChange={(date) => handleDateChange(date, field.name)} // Cambiado aquí
               label={field.placeholder}

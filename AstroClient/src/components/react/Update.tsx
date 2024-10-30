@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, Spacer, Checkbox, Select, SelectItem } from '@nextui-org/react';
+import {Icon} from '@iconify/react'
+import { Input, Button, Spacer, Checkbox, Select, SelectItem, DatePicker, type DateValue  } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
+import {format, setDate} from 'date-fns'
+import { parseDateTime } from '@internationalized/date';
 
 interface UpdateFormProps {
   endpoint: string;
@@ -12,6 +15,7 @@ interface UpdateFormProps {
 const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoint, bodyworks }) => {
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
   const [searchId, setSearchId] = useState<string>('');
+  const [dateValue, setDateValue] = useState<DateValue | null>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchId(e.target.value);
@@ -30,9 +34,14 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
         if (item.bodyworks && item.bodyworks.length > 0) {
           setFormData((prevData) => ({
             ...prevData,
-            bodyworks: item.bodyworks[0].id
-          }));
+            bodyworks: item.bodyworks[0].id         
+        }))}
+        if (item.arrivalDate){
+          const dateObject = parseDateTime(item.arrivalDate);
+          setDateValue(dateObject)
         }
+  
+
       } else {
         alert('Item not found');
       }
@@ -49,6 +58,20 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
     } else {
       setFormData({ ...formData, [name]: value });
     }
+  };
+
+  const handleDateChange = (date: DateValue | null, name: string) => {
+    if (date) {
+      // Convertir la fecha a formato ISO
+      console.log(typeof(date))
+      const cluedate = new Date(date.toString())
+      const isoDate = format(cluedate, "yyyy-mm-dd'T'HH:mm:ss");
+      console.log(isoDate);
+      setFormData({ ...formData, [name]: isoDate });
+      setDateValue(date);
+    } else {
+      setFormData({ ...formData, [name]: null });
+    } 
   };
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -102,6 +125,19 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
                   </SelectItem>
                 ))}
               </Select>
+            ) : field.type === 'datetime-local' ?(
+              <DatePicker
+                calendarProps={{
+                  color: "danger"
+                }}
+                value={dateValue || null}
+                name={formData[field.name]}
+                onChange={(date) => handleDateChange(date, "arrivalDate")} // Cambiado aquí
+                label={field.placeholder}
+                showMonthAndYearPickers
+                granularity='minute'
+                selectorIcon={<Icon icon="tabler:calendar-clock" />}
+              />
             ) : (
               <Input
                 type={field.type}
