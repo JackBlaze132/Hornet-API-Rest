@@ -97,7 +97,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
         value={searchId}
         onChange={handleSearchChange}
       />
-      <Button onClick={handleSearch}>Search</Button>
+      <Button onClick={handleSearch}>Search<Icon icon="tabler:search" className="icon" /></Button>
       <Spacer y={1} />
       <form onSubmit={handleSubmit}>
         {fields.map((field) => (
@@ -152,7 +152,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
             <Spacer y={1} />
           </div>
         ))}
-        <Button type="submit">Update</Button>
+        <Button type="submit" color='primary'>Update</Button>
       </form>
     </div>
   );
