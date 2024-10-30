@@ -16,6 +16,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
   const [formData, setFormData] = useState<{ [key: string]: any }>({});
   const [searchId, setSearchId] = useState<string>('');
   const [dateValue, setDateValue] = useState<DateValue | null>(null);
+  const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchId(e.target.value);
@@ -31,17 +32,13 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
       if (result.length > 0) {
         const item = result[0];
         setFormData(item);
-        if (item.bodyworks && item.bodyworks.length > 0) {
-          setFormData((prevData) => ({
-            ...prevData,
-            bodyworks: item.bodyworks[0].id         
-        }))}
+        if (item.bodyworks) {
+          setSelectedValue(item.bodyworks[0].id.toString());       
+        }
         if (item.arrivalDate){
           const dateObject = parseDateTime(item.arrivalDate);
           setDateValue(dateObject)
         }
-  
-
       } else {
         alert('Item not found');
       }
@@ -76,7 +73,9 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
 
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setSelectedValue(value)
+    setFormData({ ...formData, [name] : [value] });
+    
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -115,6 +114,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
               <Select
                 name={field.name}
                 value={formData[field.name] || ''}
+                selectedKeys={selectedValue ? [selectedValue] : []} 
                 onChange={handleSelect}
                 label={field.placeholder}
                 fullWidth

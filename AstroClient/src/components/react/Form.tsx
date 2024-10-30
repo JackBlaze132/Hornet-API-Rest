@@ -49,6 +49,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
     try {
       const response = await API.post(endpoint, formData);
       console.log('Form submitted successfully:', response);
+      alert('Form submitted successfully:');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
