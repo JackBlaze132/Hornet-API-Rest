@@ -117,17 +117,17 @@ class API{
     }
   }
 
-  public async delete(endpoint: string){
+  public async delete(endpoint: string, id: string) {
     try{
-      const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
-        method: 'DELETE',
-      });
-      return response.json();
-    }catch(error){
-      console.error(`Error deleting to ${endpoint}:`, error);
-      throw error
-    }
+    const response = await fetch(this.API_BASE_URL + `${endpoint}/${id}`, {
+      method: 'DELETE',
+    });
+    return response;
+  } catch (error) {
+    console.error(`Error deleting from ${endpoint}:`, error);
+    throw error;
   }
+}
 
 }
 
