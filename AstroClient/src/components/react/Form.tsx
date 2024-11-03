@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { Icon } from '@iconify/react/dist/iconify.js';
 import { Input, Button, Spacer, Checkbox, Select, SelectItem, DatePicker, type DateValue } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
@@ -44,17 +45,19 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     
+
     e.preventDefault(); // Evitar la recarga de la página
     console.log('Form data before submit:', formData); // Verificar los datos del formulario
     try {
       const response = await API.post(endpoint, formData);
       console.log('Form submitted successfully:', response);
+
       alert('Form submitted successfully:');
+
     } catch (error) {
       console.error('Error submitting form:', error);
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit}>
@@ -68,6 +71,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
             >
               {field.placeholder}
             </Checkbox>
+
           ) : field.type === 'select' ? (
             <Select
               name={field.name}
@@ -103,6 +107,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
               granularity='minute'
               selectorIcon={<Icon icon="tabler:calendar-clock" />}
             />
+
           ) : (
             <Input
               type={field.type}
@@ -113,6 +118,7 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
               isClearable
               placeholder={field.placeholder}
   
+
             />
           )}
           <Spacer y={1} />
