@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Accordion, AccordionItem, Divider } from '@nextui-org/react';
-import { Icon } from '@iconify/react'; // Asegúrate de tener un paquete de iconos instalado
+import { Icon } from '@iconify/react';
 
 interface SubOption {
   name: string;
@@ -32,14 +32,14 @@ const Sidebar: React.FC<SidebarProps> = ({ logoSrc, options }) => {
         <img src={logoSrc} alt="Logo" />
       </div>
       <div className="flex-1 overflow-y-auto">
-      <a href="/" className="block py-2 px-5">
-        <div className="flex items-center">
-          <Icon icon="tabler:home-2" className="mr-2 icon-large" fontSize="18" />
-          <span className="text-large">Home</span>
-        </div>
+        <a href="/" className="block py-2 px-5">
+          <div className="flex items-center">
+            <Icon icon="tabler:home-2" className="mr-2 icon-large" fontSize="18" />
+            <span className="text-large">Home</span>
+          </div>
         </a>
         <div className="flex items-center block p-2 ">
-        <Divider className="my-4" />
+          <Divider className="my-4" />
         </div>
         <Accordion>
           {options.map((option, index) => (
@@ -51,7 +51,7 @@ const Sidebar: React.FC<SidebarProps> = ({ logoSrc, options }) => {
                   <span className="text-large">{option.name}</span>
                 </div>
               }
-
+              textValue={option.name}
             >
               {option.subOptions && (
                 <div className="ml-4 mt-2">

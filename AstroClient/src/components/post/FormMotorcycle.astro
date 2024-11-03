@@ -1,0 +1,21 @@
+---
+import { useState } from 'react';
+import Form from '@components/react/Form'; // Ajusta la ruta según sea necesario
+import API from '@utils/api';
+
+const endpoint = API.POST_MOTORCYCLES; // Define el endpoint que quieres usar
+const fields = [
+  { name: 'id', type: 'number', placeholder: 'ID' },
+  { name: 'brand', type: 'text', placeholder: 'Brand' },
+  { name: 'price', type: 'number', placeholder: 'Price' },
+  { name: 'snid', type: 'text', placeholder: 'SNID' },
+  { name: 'abs', type: 'checkbox', placeholder: 'ABS' },
+  { name: 'forkType', type: 'text', placeholder: 'Fork Type' },
+  { name: 'helmetIncluded', type: 'checkbox', placeholder: 'Helmet Included' },
+  { name: 'arrivalDate', type: 'datetime-local', placeholder: 'Arrival Date' }
+];
+---
+
+<div class="p-4 m-4 rounded-lg shadow-lg">
+  <Form client:load endpoint={endpoint} fields={fields} />
+</div>

@@ -3,6 +3,8 @@ class API{
   private readonly API_BASE_URL: string = 'http://localhost:8090/';
   // ya se encuentra registrada en el archivo vite.config.mts
   //----[ENDPOINTS]----
+
+  public readonly MOTORCYCLES:string="motorcycles"
   //----[GET]----
   public readonly GET_BODYWORKS:string='bodyworks/get';
   public readonly GET_AUTOMOBILES:string='automobiles/get';
@@ -63,16 +65,25 @@ class API{
     public getFullUrl(endpoint: string): string {
       return this.API_BASE_URL + endpoint;
     }
-  public async get(endpoint: string) {
-    try {
-      const response = await fetch(this.getFullUrl(endpoint));
-      const data = await response.json();
-      return Array.isArray(data) ? data : [data];
-    } catch (error) {
-      console.error(`Error fetching ${endpoint}:`, error);
-      throw error;
+    public async get(endpoint: string, params?: { [key: string]: any }) {
+      try {
+        const url = new URL(this.getFullUrl(endpoint));
+        if (params) {
+          Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        }
+        const response = await fetch(url.toString(), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        return Array.isArray(data) ? data : [data];
+      } catch (error) {
+        console.error(`Error fetching ${endpoint}:`, error);
+        throw error;
+      }
     }
-  }
 
   public async post(endpoint: string, data: any) {
     try {
@@ -90,7 +101,7 @@ class API{
     }
   }
 
-  public async patch(endpoint: string, data: any) {
+  public async put(endpoint: string, data: any) {
     try {
       const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
         method: 'PUT',
@@ -106,17 +117,17 @@ class API{
     }
   }
 
-  public async delete(endpoint: string){
+  public async delete(endpoint: string, id: string) {
     try{
-      const response = await fetch(this.API_BASE_URL + `${endpoint}`, {
-        method: 'DELETE',
-      });
-      return response.json();
-    }catch(error){
-      console.error(`Error deleting to ${endpoint}:`, error);
-      throw error
-    }
+    const response = await fetch(this.API_BASE_URL + `${endpoint}/${id}`, {
+      method: 'DELETE',
+    });
+    return response;
+  } catch (error) {
+    console.error(`Error deleting from ${endpoint}:`, error);
+    throw error;
   }
+}
 
 }
 

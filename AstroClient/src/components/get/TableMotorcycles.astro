@@ -5,14 +5,15 @@ import API from '@utils/api'; // Ajusta la ruta según sea necesario
 let items: any[] = [];
 let headers: string[] = [];
 let loading = true;
-const title = "Bodyworks"; // Define el título de la tabla
+const title = "Motorcycle"; // Define el título de la tabla
 
 const fetchMotorcycles = async () => {
   try {
-    const response = await API.get(API.GET_BODYWORKS); // Utiliza la clase API
+    const response = await API.get(API.MOTORCYCLES); // Utiliza la clase API
     console.log('API response:', response); // Verificar la respuesta de la API
     items = response; // Asigna directamente la respuesta a items
     headers = Object.keys(response[0]); // Asigna las claves del primer objeto como encabezados
+
   } catch (error) {
     console.error('Error fetching motorcycles:', error);
   } finally {
@@ -27,6 +28,6 @@ await fetchMotorcycles();
   {loading ? (
     <div>Loading...</div>
   ) : (
-    <Table title={title} items={items} headers={headers} />
+    <Table title={title} items={items} headers={headers.length > 0 ? headers : ['']} />
   )}
 </div>

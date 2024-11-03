@@ -1,0 +1,16 @@
+---
+import DisplayCardReact from '@components/react/Delete'; // Ajusta la ruta según sea necesario
+
+import api from '@utils/api';
+const endpoint = '/api/objects'; // Ajusta el endpoint según sea necesario
+---
+
+<html>
+  <head>
+    <title>Display Card</title>
+  </head>
+  <body>
+    <h1>Display Card Example</h1>
+    <DisplayCardReact endpoint={api.SEARCH_BODYWORKS} enddelete={api.DELETE_BODYWORKS} client:load />
+  </body>
+</html>
