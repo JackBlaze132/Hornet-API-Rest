@@ -2,6 +2,7 @@ package org.hornetsa.services;
 
 import org.hornetsa.model.Automobile;
 import org.hornetsa.model.Bodywork;
+import org.hornetsa.repository.AutomobileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,20 +14,14 @@ import java.util.stream.Collectors;
 @Service
 public class AutomobileService {
 
-    // Lista para almacenar automóviles
-    private static ArrayList<Automobile> automobiles = new ArrayList<>();
+    @Autowired
+    private AutomobileRepository automobileRepository;
 
-    // Inyección de dependencia para BodyworkService
     @Autowired
     private BodyworkService bodyworkService;
 
     public Optional<Map<String, Object>> getAutomobile(int id, String snid) {
-        int defaultId = -1; // Valor predeterminado para el ID
-
-        return automobiles.stream()
-                .filter(auto -> (id == defaultId || auto.getId() == id)
-                        && (snid == null || auto.getSnid().equalsIgnoreCase(snid)))
-                .findFirst()
+        return automobileRepository.findById(id)
                 .map(auto -> {
                     List<Bodywork> fullBodyworks = auto.getBodyworks().stream()
                             .map(bodyworkService::findBodyworkById)
@@ -47,7 +42,7 @@ public class AutomobileService {
     }
 
     public List<Map<String, Object>> getAutomobiles() {
-        return automobiles.stream()
+        return automobileRepository.findAll().stream()
                 .map(auto -> {
                     List<Bodywork> fullBodyworks = auto.getBodyworks().stream()
                             .map(bodyworkService::findBodyworkById)
@@ -80,23 +75,18 @@ public class AutomobileService {
                     HttpStatus.NOT_FOUND, "Bodywork with ID: " + bodyworkId + " not found");
         }
 
-        if (automobiles.stream().anyMatch(a -> a.getId() == automobile.getId() || a.getSnid().equals(automobile.getSnid()))) {
-            throw new ResponseStatusException(
-                    HttpStatus.CONFLICT, "An automobile with the same ID or SNID already exists");
-        }
-
-        automobiles.add(automobile);
-        System.out.println("Automobile added: " + automobile);
+        automobileRepository.save(automobile);
     }
 
     public void deleteAutomobile(int id) {
-        automobiles.removeIf(a -> a.getId() == id);
+        if (!automobileRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Automobile not found");
+        }
+        automobileRepository.deleteById(id);
     }
 
     public void update(int id, Automobile automobile) {
-        Automobile automobileToUpdate = automobiles.stream()
-                .filter(a -> a.getId() == id)
-                .findFirst()
+        Automobile automobileToUpdate = automobileRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Automobile with the provided ID not found"));
 
@@ -113,5 +103,7 @@ public class AutomobileService {
         automobileToUpdate.setAbsBrake(automobile.isAbsBrake());
         automobileToUpdate.setBodyworks(automobile.getBodyworks());
         automobileToUpdate.setArrivalDate(automobile.getArrivalDate());
+
+        automobileRepository.save(automobileToUpdate);
     }
 }
