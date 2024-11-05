@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BodyworkRepository extends JpaRepository<Bodywork, Integer> {
-    List<Bodywork> findByNameIgnoreCase(String name);
     List<Bodywork> findByHasSunroof(boolean hasSunroof);
 }
