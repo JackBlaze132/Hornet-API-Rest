@@ -7,14 +7,13 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "automobile")  // Nombre de la tabla en la base de datos
+@Table(name = "automobile")
 public class Automobile {
 
     @Id
@@ -26,12 +25,9 @@ public class Automobile {
     private String snid;
     private boolean absBrake;
 
-    @ElementCollection  // Mapea la lista de IDs de bodyworks
-    @CollectionTable(name = "automobile_bodyworks", joinColumns = @JoinColumn(name = "automobile_id"))
-    @Column(name = "bodywork_id")
-    private List<Integer> bodyworks;
+    @ManyToOne  // Configura la relación muchos a uno
+    @JoinColumn(name = "bodywork_id")  // Columna que almacena la relación en la tabla "automobile"
+    private Bodywork bodywork;  // Cambia List<Integer> bodyworks a un solo objeto Bodywork
 
     private LocalDateTime arrivalDate;
-
-    // Constructor, getters y setters
 }
