@@ -28,7 +28,7 @@ namespace PClienteEstudiante.view
                     price = decimal.Parse(txtPriceMoto.Text),
                     snid = txtModelMotorcycle.Text,
                     absBrake = boxABS.Checked,
-                    forkType = txtFroktype.Text,
+                    forkType = string.IsNullOrWhiteSpace(txtFroktype.Text) ? null : txtFroktype.Text,
                     helmetIncluded = boxHelmet.Checked,
                     arrivalDate = datePickerMotorcycle.Value
                 };
@@ -45,7 +45,7 @@ namespace PClienteEstudiante.view
                     txtPriceMoto.Text = "";
                     txtModelMotorcycle.Text = "";
                     boxABS.Checked = false;
-                    txtFroktype.Text = "";
+                    txtFroktype.Text = null;
                     boxHelmet.Checked = false;
                     datePickerMotorcycle.Value = DateTime.Now;
                 }

@@ -27,8 +27,6 @@ public class Motorcycle {
 
     private boolean absBrake;
 
-    @NotNull(message = "ForkType cannot be null")
-    @Size(max = 30, message = "Fork type must be at most 30 characters")
     private String forkType;
 
     private boolean helmetIncluded;
