@@ -1,73 +1,50 @@
 package org.hornetsa.services;
 
 import org.hornetsa.model.Motorcycle;
+import org.hornetsa.repository.MotorcycleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MotorcycleService {
 
-    private static MotorcycleService motorcycleService;
-    private static ArrayList<Motorcycle>  motorcycles;
+    @Autowired
+    private MotorcycleRepository motorcycleRepository;
 
-    private MotorcycleService(){
-        motorcycles = new ArrayList<>();
+    public List<Motorcycle> getMotorcycles() {
+        return motorcycleRepository.findAll();
     }
 
-    public static MotorcycleService getMotorcycleService(){
-        if(motorcycleService == null){
-            motorcycleService = new MotorcycleService();
+    public Motorcycle getMotorcycleById(int id) {
+        return motorcycleRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Motorcycle not found"));
+    }
+
+    public Motorcycle addMotorcycle(Motorcycle motorcycle) {
+        return motorcycleRepository.save(motorcycle);
+    }
+
+    public void deleteMotorcycle(int id) {
+        if (!motorcycleRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Motorcycle not found");
         }
-        return motorcycleService;
+        motorcycleRepository.deleteById(id);
     }
 
-    public ArrayList<Motorcycle>  getMotorcycles() {
-        return motorcycles;
-    }
-
-    public List<Motorcycle> getMotorcycle(int id, String snid) {
-        int defaultId = -1;
-        return this.motorcycles.stream()
-                .filter(m -> (id == defaultId || m.getId() == id)
-                        && (snid == null || m.getSnid().equals(snid)))
-                .collect(Collectors.toList());
-    }
-
-    public void postMotorcycle(Motorcycle motorcycle) {
-        if (motorcycles == null) {
-            motorcycles = new ArrayList<>();
-        }
-
-        // Verificar si ya existe un motocicleta con el mismo ID o SNID
-        if (motorcycles.stream().anyMatch(m -> m.getId() ==(motorcycle.getId()) || m.getSnid().equals(motorcycle.getSnid()))) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Ya existe un motocicleta con el mismo ID o SNID");
-        }
-
-        motorcycles.add(motorcycle);
-        System.out.println(motorcycle);
-    }
-
-    public void deleteMotorcycle (int id){
-        motorcycles.removeIf(m -> m.getId() == id);
-    }
-    
-    public void update (int id, Motorcycle motorcycle){
-        Motorcycle motorcycleToUpdate = motorcycles.stream().filter(m -> m.getId() == id).findFirst().orElse(null);
-        if (motorcycleToUpdate == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontró la motocicleta con el ID proporcionado");
-        }
-        motorcycleToUpdate.setBrand(motorcycle.getBrand());
-        motorcycleToUpdate.setPrice(motorcycle.getPrice());
-        motorcycleToUpdate.setSnid(motorcycle.getSnid());
-        motorcycleToUpdate.setAbsBrake(motorcycle.isAbsBrake());
-        motorcycleToUpdate.setForkType(motorcycle.getForkType());
-        motorcycleToUpdate.setHelmetIncluded(motorcycle.isHelmetIncluded());
-        motorcycleToUpdate.setArrivalDate(motorcycle.getArrivalDate());
-
+    public Motorcycle updateMotorcycle(int id, Motorcycle updatedMotorcycle) {
+        Motorcycle existingMotorcycle = motorcycleRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Motorcycle not found"));
+        existingMotorcycle.setBrand(updatedMotorcycle.getBrand());
+        existingMotorcycle.setPrice(updatedMotorcycle.getPrice());
+        existingMotorcycle.setSnid(updatedMotorcycle.getSnid());
+        existingMotorcycle.setAbsBrake(updatedMotorcycle.isAbsBrake());
+        existingMotorcycle.setForkType(updatedMotorcycle.getForkType());
+        existingMotorcycle.setHelmetIncluded(updatedMotorcycle.isHelmetIncluded());
+        existingMotorcycle.setArrivalDate(updatedMotorcycle.getArrivalDate());
+        return motorcycleRepository.save(existingMotorcycle);
     }
 }
