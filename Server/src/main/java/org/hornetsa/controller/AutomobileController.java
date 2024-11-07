@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/automobiles")
@@ -63,7 +64,7 @@ public class AutomobileController {
 
     @PostMapping("/add")
     public ResponseEntity<Automobile> addAutomobile(
-            @RequestBody Automobile automobile, BindingResult result) {
+            @Valid @RequestBody Automobile automobile, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
@@ -111,7 +112,7 @@ public class AutomobileController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Automobile> updateAutomobile(
             @PathVariable("id") int id,
-            @RequestBody Automobile automobile, BindingResult result) {
+            @Valid @RequestBody Automobile automobile, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }

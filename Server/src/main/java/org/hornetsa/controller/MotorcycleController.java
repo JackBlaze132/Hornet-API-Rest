@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import jakarta.validation.Valid; // Importar @Valid
 import java.util.*;
 
 @RestController
@@ -53,8 +54,9 @@ public class MotorcycleController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Motorcycle> searchMotorcycle(@RequestParam("id") Optional<Integer> id,
-                                                       @RequestParam("snid") Optional<String> snid) {
+    public ResponseEntity<Motorcycle> searchMotorcycle(
+            @RequestParam("id") Optional<Integer> id,
+            @RequestParam("snid") Optional<String> snid) {
 
         Motorcycle motorcycle = motorcycleService.getMotorcycles().stream()
                 .filter(m -> (id.isPresent() && m.getId() == id.get()) ||
@@ -68,7 +70,9 @@ public class MotorcycleController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Motorcycle> addMotorcycle(@RequestBody Motorcycle motorcycle, BindingResult result) {
+    public ResponseEntity<Motorcycle> addMotorcycle(
+            @Valid @RequestBody Motorcycle motorcycle, BindingResult result) {  // @Valid agregado
+
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
@@ -83,8 +87,10 @@ public class MotorcycleController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Motorcycle> updateMotorcycle(@PathVariable("id") int id,
-                                                       @RequestBody Motorcycle motorcycle, BindingResult result) {
+    public ResponseEntity<Motorcycle> updateMotorcycle(
+            @PathVariable("id") int id,
+            @Valid @RequestBody Motorcycle motorcycle, BindingResult result) {  // @Valid agregado
+
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }

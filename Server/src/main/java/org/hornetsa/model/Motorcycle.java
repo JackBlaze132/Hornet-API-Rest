@@ -1,10 +1,8 @@
 package org.hornetsa.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -12,15 +10,31 @@ import java.time.LocalDateTime;
 public class Motorcycle {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(value = 1, message = "ID must be greater than 0")
     private int id;
 
+    @NotNull(message = "Brand cannot be null")
+    @Size(min = 2, max = 50, message = "Brand must be between 2 and 50 characters")
     private String brand;
+
+    @NotNull(message = "Price cannot be null")
+    @Positive(message = "Price must be a positive value")
     private double price;
+
+    @NotNull(message = "SNID cannot be null")
+    @Size(min = 3, max = 20, message = "SNID must be between 5 and 20 characters")
     private String snid;
+
     private boolean absBrake;
+
+    @NotNull(message = "ForkType cannot be null")
+    @Size(max = 30, message = "Fork type must be at most 30 characters")
     private String forkType;
+
     private boolean helmetIncluded;
+
+    @NotNull(message = "Time cannot be null")
+    @PastOrPresent(message = "Arrival date cannot be in the future")
     private LocalDateTime arrivalDate;
 
     // Constructor, getters y setters

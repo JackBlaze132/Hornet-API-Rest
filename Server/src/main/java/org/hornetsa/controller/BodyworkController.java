@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/bodyworks")
@@ -28,7 +29,9 @@ public class BodyworkController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<Bodywork>> getAllBodyworks(@RequestParam(value = "hasSunroof", required = false) Boolean hasSunroof) {
+    public ResponseEntity<List<Bodywork>> getAllBodyworks(
+            @RequestParam(value = "hasSunroof", required = false) Boolean hasSunroof) {
+
         List<Bodywork> bodyworks = bodyworkService.getBodyworks();
 
         if (hasSunroof != null) {
@@ -57,41 +60,29 @@ public class BodyworkController {
 
     @PostMapping("/add")
     public ResponseEntity<Bodywork> addBodywork(
-            @RequestBody Bodywork bodywork, BindingResult result) {
+            @Valid @RequestBody Bodywork bodywork, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
 
-        try {
-            bodyworkService.addBodywork(bodywork);  // Cambiado a addBodywork
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(bodywork);
+        return ResponseEntity.ok(bodyworkService.addBodywork(bodywork));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteBodywork(@PathVariable("id") int id) {
         bodyworkService.deleteBodywork(id);
-        return ResponseEntity.ok("Carrocería eliminada");
+        return ResponseEntity.ok("Bodywork deleted");
     }
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Bodywork> updateBodywork(
             @PathVariable("id") int id,
-            @RequestBody Bodywork bodywork, BindingResult result) {
+            @Valid @RequestBody Bodywork bodywork, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
 
-        try {
-            bodyworkService.updateBodywork(id, bodywork);  // Cambiado a updateBodywork
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(bodywork);
+        return ResponseEntity.ok(bodyworkService.updateBodywork(id, bodywork));
     }
 
     private String formatMessage(BindingResult result) {
@@ -116,26 +107,5 @@ public class BodyworkController {
         }
 
         return jsonString;
-    }
-
-    @PostMapping("/addMultiple")
-    public ResponseEntity<List<Bodywork>> addBodyworks(
-            @RequestBody List<Bodywork> bodyworks, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
-        }
-
-        List<Bodywork> createdBodyworks = new ArrayList<>();
-
-        try {
-            for (Bodywork bodywork : bodyworks) {
-                bodyworkService.addBodywork(bodywork);  // Cambiado a addBodywork
-                createdBodyworks.add(bodywork);
-            }
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(createdBodyworks);
     }
 }
