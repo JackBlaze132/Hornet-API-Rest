@@ -45,7 +45,7 @@ namespace PClienteEstudiante.view
                     txtPriceMoto.Text = "";
                     txtModelMotorcycle.Text = "";
                     boxABS.Checked = false;
-                    txtFroktype.Text = "";
+                    txtFroktype.Text = null;
                     boxHelmet.Checked = false;
                     datePickerMotorcycle.Value = DateTime.Now;
                 }
