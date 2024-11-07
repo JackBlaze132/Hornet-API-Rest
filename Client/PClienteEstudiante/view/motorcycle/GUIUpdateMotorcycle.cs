@@ -85,7 +85,7 @@ namespace PClienteEstudiante.view.motorcycle
                 motorcycleToEdit.price = decimal.Parse(txtPriceMoto.Text);
                 motorcycleToEdit.snid = txtModelMotorcycle.Text;
                 motorcycleToEdit.absBrake = boxABS.Checked;
-                motorcycleToEdit.forkType = txtFroktype.Text;
+                motorcycleToEdit.forkType = string.IsNullOrWhiteSpace(txtFroktype.Text) ? null : txtFroktype.Text;
                 motorcycleToEdit.helmetIncluded = boxHelmet.Checked;
                 motorcycleToEdit.arrivalDate = datePickerMotorcycle.Value;
 
@@ -158,7 +158,7 @@ namespace PClienteEstudiante.view.motorcycle
             txtBrandMoto.Text = "";
             txtPriceMoto.Text = "";
             txtModelMotorcycle.Text = "";
-            txtFroktype.Text = "";
+            txtFroktype.Text = null;
             boxABS.Checked = false;
             boxHelmet.Checked = false;
             datePickerMotorcycle.Text = "";
