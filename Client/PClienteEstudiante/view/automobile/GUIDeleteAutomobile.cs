@@ -47,23 +47,18 @@ namespace PClienteEstudiante.view.automobile
 
                 if (response.IsSuccessful)
                 {
-                    // Deserialize the response into an Automobile object.
-                    var jsonOptions = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true // Ignore case differences in property names.
-                    };
 
-                    var automobile = JsonSerializer.Deserialize<Automobile>(response.Content, jsonOptions);
+                    searchedAutomobile = JsonSerializer.Deserialize<Automobile>(response.Content);
 
-                    if (automobile != null)
+                    if (searchedAutomobile != null)
                     {
                         // Populate the form fields with the automobile data.
-                        txtBrandAuto.Text = automobile.brand;
-                        txtPriceAuto.Text = automobile.price.ToString();
-                        txtSnidAuto.Text = automobile.snid;
-                        comboBoxBodyAuto.Text = automobile.bodyworks[0].name;
-                        boxABS.Checked = automobile.absBrake;
-                        datePickerAuto.Value = automobile.arrivalDate;
+                        txtBrandAuto.Text = searchedAutomobile.brand;
+                        txtPriceAuto.Text = searchedAutomobile.price.ToString();
+                        txtSnidAuto.Text = searchedAutomobile.snid;
+                        comboBoxBodyAuto.Text = searchedAutomobile.bodywork != null ? searchedAutomobile.bodywork.name : "Unassigned";
+                        boxABS.Checked = searchedAutomobile.absBrake;
+                        datePickerAuto.Value = searchedAutomobile.arrivalDate;
                     }
                     else
                     {
