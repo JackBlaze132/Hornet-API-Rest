@@ -75,28 +75,7 @@ public class AutomobileController {
             return ResponseEntity.badRequest().build();
         }
 
-        return ResponseEntity.ok(automobile);
-    }
-
-    @PostMapping("/addMultiple")
-    public ResponseEntity<List<Automobile>> addAutomobiles(
-            @RequestBody List<Automobile> automobiles, BindingResult result) {
-        if (result.hasErrors()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
-        }
-
-        List<Automobile> createdAutomobiles = new ArrayList<>();
-
-        try {
-            for (Automobile automobile : automobiles) {
-                automobileService.postAutomobile(automobile);
-                createdAutomobiles.add(automobile);
-            }
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(createdAutomobiles);
+        return ResponseEntity.ok(automobileService.postAutomobile(automobile));
     }
 
     @DeleteMapping("/delete/{id}")
@@ -117,13 +96,7 @@ public class AutomobileController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
 
-        try {
-            automobileService.update(id, automobile);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
-        return ResponseEntity.ok(automobile);
+        return ResponseEntity.ok(automobileService.update(id, automobile));
     }
 
     private String formatMessage(BindingResult result) {
