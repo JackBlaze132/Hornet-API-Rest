@@ -32,8 +32,9 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
       if (result.length > 0) {
         const item = result[0];
         setFormData(item);
-        if (item.bodyworks) {
-          setSelectedValue(item.bodyworks[0].id.toString());       
+        if (item.bodywork) {
+          setSelectedValue(item.bodywork.id.toString());
+
         }
         if (item.arrivalDate){
           const dateObject = parseDateTime(item.arrivalDate);
@@ -74,7 +75,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setSelectedValue(value)
-    setFormData({ ...formData, [name] : [value] });
+    setFormData({ ...formData, [name] : { id: value} });
     
   };
 

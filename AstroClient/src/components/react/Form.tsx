@@ -22,8 +22,8 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
     const { name, value, type } = e.target;
     if (type === 'checkbox' && e.target instanceof HTMLInputElement) {
       setFormData({ ...formData, [name]: e.target.checked });
-    } else if (name === 'bodyworks') {
-      setFormData({ ...formData, [name]: [value] });
+    } else if (name === 'bodywork') {
+      setFormData({ ...formData, [name]: {id : value} });
     } else {
       setFormData({ ...formData, [name]: value });
     }
