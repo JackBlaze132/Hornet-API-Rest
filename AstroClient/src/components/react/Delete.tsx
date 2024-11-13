@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Icon} from '@iconify/react'
 import { Input, Button, Spacer, Card, CardHeader, CardBody } from '@nextui-org/react';
 import API from '@utils/api'; // Asegúrate de importar correctamente la clase API
 import Formatter from '@utils/formatter'; // Asegúrate de importar correctamente la clase Formatter
@@ -62,31 +63,34 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ endpoint, enddelete }) => {
       <Button onClick={handleSearch}>Search</Button>
       <Spacer y={1} />
       {data ? (
-        <Card>
-          <CardHeader>
-            <h4>Details</h4>
-          </CardHeader>
-          <CardBody>
-            {Object.keys(data).map((key) => {
-              if (key === 'bodyworks' && Array.isArray(data[key]) && data[key].length > 0) {
+        <div>
+          <Card>
+            <CardHeader>
+              <h4>Details</h4>
+            </CardHeader>
+            <CardBody>
+              {Object.keys(data).map((key) => {
+                if (key === 'bodyworks' && Array.isArray(data[key]) && data[key].length > 0) {
+                  return (
+                    <div key={key}>
+                      <strong>Bodywork:</strong> {data[key][0].name}
+                    </div>
+                  );
+                }
                 return (
-                  <div key={key}>
-                    <strong>Bodywork:</strong> {data[key][0].name}
-                  </div>
+                  <p key={key}>
+                    <strong>{key}:</strong> {typeof data[key] === 'boolean' ? formmatter.booleanToString(data[key]) : data[key]}
+                  </p>
                 );
-              }
-              return (
-                <p key={key}>
-                  <strong>{key}:</strong> {typeof data[key] === 'boolean' ? formmatter.booleanToString(data[key]) : data[key]}
-                </p>
-              );
-            })}
-          </CardBody>
-          <Button color="danger" onClick={handleDelete}>
-            Delete
+              })}
+            </CardBody>
+          </Card>
+          <Button color="danger" onClick={handleDelete} className="max-w-[250px]">
+            <Icon icon="tabler:trash-x" />Delete
           </Button>
-        </Card>
+        </div>
       ) : null}
+      
     </div>
   );
 };
