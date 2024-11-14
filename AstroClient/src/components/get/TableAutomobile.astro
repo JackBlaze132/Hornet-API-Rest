@@ -13,7 +13,7 @@ const fetchAutomobiles = async () => {
     console.log('API response:', response); // Verificar la respuesta de la API
     items = response.map((item: any) => ({
       ...item,
-      Bodywork: item.bodywork.name
+      Bodywork: item.bodywork ? item.bodywork.name : null 
     }));
     headers = Object.keys(response[0]).map(header => header === 'bodywork' ? 'Bodywork' : header);
   } catch (error) {
