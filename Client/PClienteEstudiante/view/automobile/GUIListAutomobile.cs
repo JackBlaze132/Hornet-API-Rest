@@ -45,9 +45,7 @@ namespace PClienteEstudiante.view.automobile
                             auto.price,
                             auto.snid,
                             auto.absBrake,
-                            bodyworkId = auto.bodywork != null ? auto.bodywork.id.ToString() : "Unassigned", // Access to 'bodywork' in singular
                             bodyworkName = auto.bodywork?.name ?? "N/A", // Acceso directo a 'bodywork' en singular
-                            bodyworkSunroof = auto.bodywork?.hasSunroof ?? false, // Acceso directo a 'bodywork' en singular
                             auto.arrivalDate
                         }).ToList();
 
