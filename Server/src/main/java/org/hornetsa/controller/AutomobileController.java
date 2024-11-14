@@ -112,7 +112,7 @@ public class AutomobileController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Automobile> updateAutomobile(
             @PathVariable("id") int id,
-            @Valid @RequestBody Automobile automobile, BindingResult result) {
+            @RequestBody Automobile automobile, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }

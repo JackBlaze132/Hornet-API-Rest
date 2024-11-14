@@ -75,14 +75,19 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
   const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setSelectedValue(value)
-    setFormData({ ...formData, [name] : { id: value} });
+    if (value === '' || value === null) {
+    setFormData({ ...formData, [name] : null });
+    } else {
+      setFormData({ ...formData, [name] : { id: value} });
+    }
     
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await API.put(`${endpoint}/${formData.id}`, formData);
+      const response = await API.put(`${endpoint}/${formData.id}`, formData);
+      console.log(response);
       alert('Item updated successfully!');
     } catch (error) {
       console.error('Error updating item:', error);
