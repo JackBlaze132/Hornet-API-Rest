@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Windows.Forms;
+using PClienteEstudiante.view.bodywork;
 using RestSharp;
 
 namespace PClienteEstudiante.view.automobile
@@ -44,9 +45,9 @@ namespace PClienteEstudiante.view.automobile
                             auto.price,
                             auto.snid,
                             auto.absBrake,
-                            bodyworkName = string.Join(", ", auto.bodyworks.Select(b => b.name)), // Join names with commas
-                            bodyworkId = string.Join(", ", auto.bodyworks.Select(b => b.id)), // Join ids with commas
-                            bodyworkSunroof = auto.bodyworks.Any(b => b.hasSunroof), // Join sunroof values with commas
+                            bodyworkId = auto.bodywork != null ? auto.bodywork.id.ToString() : "Unassigned", // Access to 'bodywork' in singular
+                            bodyworkName = auto.bodywork?.name ?? "N/A", // Acceso directo a 'bodywork' en singular
+                            bodyworkSunroof = auto.bodywork?.hasSunroof ?? false, // Acceso directo a 'bodywork' en singular
                             auto.arrivalDate
                         }).ToList();
 

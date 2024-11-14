@@ -89,7 +89,7 @@ namespace PClienteEstudiante.view.automobile
                         txtBrandAuto.Text = automobile.brand;
                         txtPriceAuto.Text = automobile.price.ToString();
                         txtSnidAuto.Text = automobile.snid;
-                        comboBoxBodyAuto.Text = automobile.bodyworks[0].name;
+                        comboBoxBodyAuto.Text = automobile.bodywork != null ? automobile.bodywork.name : "Unassigned";
                         boxABS.Checked = automobile.absBrake;
                         datePickerAuto.Value = automobile.arrivalDate;
                     }

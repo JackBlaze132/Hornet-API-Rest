@@ -14,7 +14,7 @@ namespace PClienteEstudiante.view.automobile
         public decimal price { get; set; }
         public string snid { get; set; }
         public bool absBrake { get; set; }
-        public List<Bodywork> bodyworks { get; set; }
+        public Bodywork bodywork { get; set; }
         public DateTime arrivalDate { get; set; }
     }
 }

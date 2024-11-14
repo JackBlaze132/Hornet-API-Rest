@@ -23,6 +23,12 @@ namespace PClienteEstudiante.view.automobile
         {
             try
             {
+                // Crear una lista que siempre incluya la opción "No Assign"
+                var bodyworkList = new List<Bodywork>
+                {
+                    new Bodywork { id = 0, name = "No Assign" } // The "No Assign" option
+                };
+
                 var options = new RestClientOptions("http://localhost:8090");
                 var client = new RestClient(options);
                 var request = new RestRequest("/bodyworks/get", Method.Get);
@@ -35,25 +41,34 @@ namespace PClienteEstudiante.view.automobile
 
                     if (bodyworks != null && bodyworks.Count > 0)
                     {
-                        comboBoxBodyAuto.DataSource = bodyworks;
-                        comboBoxBodyAuto.DisplayMember = "name"; // Display the bodywork name
-                        comboBoxBodyAuto.ValueMember = "id"; // Use the bodywork ID as the value
+                        // Agregar los resultados obtenidos a la lista
+                        bodyworkList.AddRange(bodyworks);
                     }
                     else
                     {
-                        MessageBox.Show("No bodyworks found." + response.StatusDescription);
+                        MessageBox.Show("No bodyworks found.");
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Failed to retrieve the bodyworks." + response.StatusDescription);
-                }
+
+                // Configurar el ComboBox con la lista de bodyworks, incluyendo "No Assign"
+                comboBoxBodyAuto.DataSource = bodyworkList;
+                comboBoxBodyAuto.DisplayMember = "name"; // Display the bodywork name
+                comboBoxBodyAuto.ValueMember = "id"; // Use the bodywork ID as the value
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
+
+                // En caso de excepción, asegurar que el ComboBox tiene solo la opción "No Assign"
+                comboBoxBodyAuto.DataSource = new List<Bodywork>
+                {
+                    new Bodywork { id = 0, name = "No Assign" }
+                };
+                comboBoxBodyAuto.DisplayMember = "name";
+                comboBoxBodyAuto.ValueMember = "id";
             }
         }
+
 
         // Event handler for the "Add" button.
         // Sends a POST request to the server to add a new automobile.
@@ -64,13 +79,6 @@ namespace PClienteEstudiante.view.automobile
                 // Get the selected bodywork from the ComboBox.
                 Bodywork selectedBodywork = (Bodywork)comboBoxBodyAuto.SelectedItem;
 
-                // Ensure a bodywork is selected.
-                if (selectedBodywork == null)
-                {
-                    MessageBox.Show("Please select a bodywork.");
-                    return;
-                }
-
                 // Create a new Automobile object with the form inputs.
                 var automobile = new Automobile
                 {
@@ -79,7 +87,7 @@ namespace PClienteEstudiante.view.automobile
                     price = decimal.Parse(txtPriceAuto.Text),
                     snid = txtSnidAuto.Text,
                     absBrake = boxABS.Checked,
-                    bodyworks = new List<Bodywork> { selectedBodywork }, // Add the selected bodywork object
+                    bodywork = selectedBodywork.id == 0 ? null : selectedBodywork, // Add the selected bodywork object
                     arrivalDate = datePickerAuto.Value
                 };
 
@@ -88,19 +96,7 @@ namespace PClienteEstudiante.view.automobile
                 var request = new RestRequest("/automobiles/add", Method.Post);
 
                 // Serialize the automobile object, sending only the IDs of the bodyworks.
-                var serializedAutomobile = new
-                {
-                    automobile.id,
-                    automobile.brand,
-                    automobile.price,
-                    automobile.snid,
-                    automobile.absBrake,
-                    bodyworks = automobile.bodyworks.Select(b => b.id).ToList(), // Send only the bodywork IDs
-                    automobile.arrivalDate
-                };
-
-                string automobileJson = JsonSerializer.Serialize(serializedAutomobile);
-                request.AddJsonBody(automobileJson);
+                request.AddJsonBody(automobile);
 
                 var response = client.Execute(request);
 
@@ -112,7 +108,8 @@ namespace PClienteEstudiante.view.automobile
                     txtPriceAuto.Text = "";
                     txtSnidAuto.Text = "";
                     boxABS.Checked = false;
-                    comboBoxBodyAuto.SelectedIndex = -1; // Reset ComboBox selection
+                    LoadBodyworks(); // Reload the bodyworks after adding a new automobile.
+                    comboBoxBodyAuto.SelectedIndex = 0; // Reset ComboBox selection
                     datePickerAuto.Value = DateTime.Now; // Clear the form after successful addition.
                 }
                 else

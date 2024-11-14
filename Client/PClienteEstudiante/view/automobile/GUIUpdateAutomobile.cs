@@ -61,7 +61,7 @@ namespace PClienteEstudiante.view.automobile
                         txtBrandAuto.Text = automobile.brand;
                         txtPriceAuto.Text = automobile.price.ToString();
                         txtSnidAuto.Text = automobile.snid;
-                        comboBoxBodyAuto.Text = automobile.bodyworks[0].name;
+                        comboBoxBodyAuto.Text = automobile.bodywork != null ? automobile.bodywork.name : "Unassigned";
                         boxABS.Checked = automobile.absBrake;
                         datePickerAuto.Value = automobile.arrivalDate;
                         enableFields();
@@ -94,13 +94,6 @@ namespace PClienteEstudiante.view.automobile
                     return;
                 }
 
-                // Validar que un Bodywork esté seleccionado en el ComboBox.
-                if (comboBoxBodyAuto.SelectedItem == null)
-                {
-                    MessageBox.Show("Please select a bodywork.");
-                    return;
-                }
-
                 // Obtener el Bodywork seleccionado.
                 Bodywork selectedBodywork = (Bodywork)comboBoxBodyAuto.SelectedItem;
 
@@ -112,7 +105,7 @@ namespace PClienteEstudiante.view.automobile
                     price = decimal.Parse(txtPriceAuto.Text),
                     snid = txtSnidAuto.Text,
                     absBrake = boxABS.Checked,
-                    bodyworks = new List<Bodywork> { selectedBodywork }, // Incluir el Bodywork seleccionado.
+                    bodywork = selectedBodywork.id == 0 ? null : selectedBodywork, // Incluir el Bodywork seleccionado.
                     arrivalDate = datePickerAuto.Value
                 };
 
@@ -121,20 +114,7 @@ namespace PClienteEstudiante.view.automobile
                 var client = new RestClient(options);
                 var request = new RestRequest($"/automobiles/update/{automobile.id}", Method.Put);
 
-                // Serializar el objeto Automobile, enviando solo los IDs de los Bodyworks.
-                var searchedAutomobile = new
-                {
-                    automobile.id,
-                    automobile.brand,
-                    automobile.price,
-                    automobile.snid,
-                    automobile.absBrake,
-                    bodyworks = automobile.bodyworks.Select(b => b.id).ToList(), // Enviar solo los IDs.
-                    automobile.arrivalDate
-                };
-
-                string automobileJson = JsonSerializer.Serialize(searchedAutomobile);
-                request.AddJsonBody(automobileJson); // Agregar el JSON al cuerpo de la solicitud.
+                request.AddJsonBody(automobile); // Agregar el JSON al cuerpo de la solicitud.
 
                 var response = client.Execute(request); // Ejecutar la solicitud PUT.
 
@@ -142,11 +122,11 @@ namespace PClienteEstudiante.view.automobile
                 {
                     MessageBox.Show("Automobile updated successfully.");
                     btnReset.PerformClick(); // Limpiar el formulario.
-                    searchedAutomobile = null; // Reiniciar el automóvil buscado.
+                    automobile = null; // Reiniciar el automóvil buscado.
                 }
                 else
                 {
-                    MessageBox.Show("Failed to update the automobile." + response.StatusDescription);
+                    MessageBox.Show("Failed to update the automobile." + response.StatusCode);
                 }
             }
             catch (Exception ex)
@@ -210,7 +190,12 @@ namespace PClienteEstudiante.view.automobile
 
                     if (bodyworks != null && bodyworks.Count > 0)
                     {
-                        comboBoxBodyAuto.DataSource = bodyworks;
+                        var bodyworkList = new List<Bodywork>
+                        {
+                            new Bodywork { id = 0, name = "No Assign" } // El id es 0 y name es "Select" para mostrarlo como opción nula
+                        };
+                        bodyworkList.AddRange(bodyworks);
+                        comboBoxBodyAuto.DataSource = bodyworkList;
                         comboBoxBodyAuto.DisplayMember = "name"; // Display the bodywork name
                         comboBoxBodyAuto.ValueMember = "id"; // Use the bodywork ID as the value
                     }

@@ -36,7 +36,6 @@ public class Automobile {
 
     @ManyToOne
     @JoinColumn(name = "bodywork_id")
-    @NotNull(message = "Bodywork cannot be null")
     private Bodywork bodywork;
 
     @PastOrPresent(message = "Arrival date cannot be in the future")
