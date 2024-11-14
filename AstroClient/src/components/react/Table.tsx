@@ -33,8 +33,9 @@ const TableReact: React.FC<TableProps> = ({ items, title, headers }) => {
             <TableRow key={rowIndex} className="">
               {headers.map((header, colIndex) => (
                 <TableCell key={colIndex} textValue={item[header]?.toString() || ''}>
-                  {typeof item[header] === 'boolean' ? formatter.booleanToString(item[header]) : 
-                   typeof item[header] === 'string' && header.toLowerCase().includes('date') ? formatter.formatDate(item[header]) : 
+                  {typeof item[header] === 'boolean' ? formatter.booleanToString(item[header]) :
+                   typeof item[header] === 'string' && header.toLowerCase().includes('date') ? formatter.formatDate(item[header]) :
+                   item[header] === null ? formatter.nulltoN_A(item[header]) : 
                    item[header]}
                 </TableCell>
               ))}
