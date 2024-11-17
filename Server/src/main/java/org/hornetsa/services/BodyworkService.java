@@ -17,7 +17,10 @@ public class BodyworkService {
     @Autowired
     private BodyworkRepository bodyworkRepository;
 
-    public List<Bodywork> getBodyworks() {
+    public List<Bodywork> getBodyworks(Boolean hasSunroof) {
+        if (hasSunroof != null) {
+            return bodyworkRepository.findByHasSunroof(hasSunroof);
+        }
         return bodyworkRepository.findAll();
     }
 

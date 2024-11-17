@@ -37,23 +37,32 @@ public class AutomobileService {
                 });
     }
 
-    public List<Map<String, Object>> getAutomobiles() {
-        return automobileRepository.findAll().stream()
-                .map(auto -> {
+    public List<Map<String, Object>> getAutomobiles(Boolean absBrake) {
+        List<Automobile> automobiles;
 
+        // Si absBrake es nulo, obtener todos los registros; de lo contrario, filtrar
+        if (absBrake != null) {
+            automobiles = automobileRepository.findByAbsBrake(absBrake);
+        } else {
+            automobiles = automobileRepository.findAll();
+        }
+
+        // Transformar los datos en el formato necesario
+        return automobiles.stream()
+                .map(auto -> {
                     Map<String, Object> response = new LinkedHashMap<>();
                     response.put("id", auto.getId());
                     response.put("brand", auto.getBrand());
                     response.put("price", auto.getPrice());
                     response.put("snid", auto.getSnid());
                     response.put("absBrake", auto.isAbsBrake());
-                    response.put("bodywork", auto.getBodywork()); // Cambiado para usar un solo Bodywork
+                    response.put("bodywork", auto.getBodywork());
                     response.put("arrivalDate", auto.getArrivalDate());
-
                     return response;
                 })
                 .collect(Collectors.toList());
     }
+
 
     public Automobile postAutomobile(Automobile automobile) {
         return automobileRepository.save(automobile);

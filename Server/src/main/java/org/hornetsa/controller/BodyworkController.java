@@ -32,15 +32,11 @@ public class BodyworkController {
     public ResponseEntity<List<Bodywork>> getAllBodyworks(
             @RequestParam(value = "hasSunroof", required = false) Boolean hasSunroof) {
 
-        List<Bodywork> bodyworks = bodyworkService.getBodyworks();
+        List<Bodywork> bodyworks = bodyworkService.getBodyworks(hasSunroof);
 
-        if (hasSunroof != null) {
-            bodyworks = bodyworks.stream()
-                    .filter(b -> b.isHasSunroof() == hasSunroof)
-                    .collect(Collectors.toList());
+        if (bodyworks.isEmpty()) {
+            return ResponseEntity.notFound().build();
         }
-
-        if (bodyworks.isEmpty()) return ResponseEntity.notFound().build();
 
         return ResponseEntity.ok(bodyworks);
     }

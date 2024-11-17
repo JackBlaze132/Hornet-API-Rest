@@ -33,13 +33,7 @@ public class AutomobileController {
     public ResponseEntity<List<Map<String, Object>>> getAllAutomobiles(
             @RequestParam(value = "absBrake", required = false) Boolean absBrake) {
 
-        List<Map<String, Object>> automobiles = automobileService.getAutomobiles();
-
-        if (absBrake != null) {
-            automobiles = automobiles.stream()
-                    .filter(a -> (Boolean) a.get("absBrake") == absBrake)
-                    .collect(Collectors.toList());
-        }
+        List<Map<String, Object>> automobiles = automobileService.getAutomobiles(absBrake);
 
         if (automobiles.isEmpty()) {
             return ResponseEntity.notFound().build();
