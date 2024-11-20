@@ -1,33 +1,15 @@
 ---
-import Table from '@components/react/Table';
-import API from '@utils/api'; // Ajusta la ruta según sea necesario
+import TableReact from '@components/react/Table';
+import API from '@utils/api';
 
-let items: any[] = [];
-let headers: string[] = [];
-let loading = true;
-const title = "Motorcycle"; // Define el título de la tabla
-
-const fetchMotorcycles = async () => {
-  try {
-    const response = await API.get(API.GET_MOTORCYCLES); // Utiliza la clase API
-    console.log('API response:', response); // Verificar la respuesta de la API
-    items = response; // Asigna directamente la respuesta a items
-    headers = Object.keys(response[0]); // Asigna las claves del primer objeto como encabezados
-
-  } catch (error) {
-    console.error('Error fetching motorcycles:', error);
-  } finally {
-    loading = false;
-  }
-};
-
-await fetchMotorcycles();
+const endpoint = API.GET_MOTORCYCLES;
+const title = 'Motorcycles';
 ---
-
 <div class="p-4 m-4 rounded-lg shadow-lg">
-  {loading ? (
-    <div>Loading...</div>
-  ) : (
-    <Table title={title} items={items} headers={headers.length > 0 ? headers : ['']} />
-  )}
+  <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
+    {title} Table
+  </h2>
+</div>
+<div class="ps-4 ms-4 rounded-lg shadow-lg">
+  <TableReact client:load endpoint={endpoint} title={title} />
 </div>

@@ -1,35 +1,17 @@
 ---
+// src/components/get/TableAutomobile.astro
 import TableReact from '@components/react/Table';
-import API from '@utils/api'; // Ajusta la ruta según sea necesario
+import FilterComponent from '@components/react/Filter';
+import API from '@utils/api';
 
-let items: any[] = [];
-let headers: string[] = [];
-let loading = true;
-const title = "Automobile"; // Define el título de la tabla
-
-const fetchAutomobiles = async () => {
-  try {
-    const response = await API.get(API.GET_AUTOMOBILES); // Utiliza la clase API
-    console.log('API response:', response); // Verificar la respuesta de la API
-    items = response.map((item: any) => ({
-      ...item,
-      Bodywork: item.bodywork ? item.bodywork.name : null 
-    }));
-    headers = Object.keys(response[0]).map(header => header === 'bodywork' ? 'Bodywork' : header);
-  } catch (error) {
-    console.error('Error fetching automobiles:', error);
-  } finally {
-    loading = false;
-  }
-};
-
-await fetchAutomobiles();
+const endpoint = API.GET_AUTOMOBILES;
+const title = 'Automobiles';
 ---
-
 <div class="p-4 m-4 rounded-lg shadow-lg">
-  {loading ? (
-    <div>Loading...</div>
-  ) : (
-    <TableReact title={title} items={items} headers={headers} />
-  )}
+  <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
+    {title} Table
+  </h2>
+</div>
+<div class="ps-4 ms-4 rounded-lg shadow-lg">
+  <TableReact client:load endpoint={endpoint} title={title} />
 </div>

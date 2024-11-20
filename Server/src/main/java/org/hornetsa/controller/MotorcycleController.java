@@ -89,7 +89,7 @@ public class MotorcycleController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Motorcycle> updateMotorcycle(
             @PathVariable("id") int id,
-            @Valid @RequestBody Motorcycle motorcycle, BindingResult result) {  // @Valid agregado
+            @RequestBody Motorcycle motorcycle, BindingResult result) {  // @Valid agregado
 
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
