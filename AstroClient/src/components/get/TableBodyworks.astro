@@ -4,6 +4,11 @@ import API from '@utils/api';
 
 const endpoint = API.GET_BODYWORKS;
 const title = 'Bodyworks';
+
+const filterConfig = [
+  { field: 'hasSunroof', label: 'Has Sunroof' },
+  // Añade más filtros según sea necesario
+];
 ---
 <div class="p-4 m-4 rounded-lg shadow-lg">
   <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
@@ -11,5 +16,5 @@ const title = 'Bodyworks';
   </h2>
 </div>
 <div class="ps-4 ms-4 rounded-lg shadow-lg">
-  <TableReact client:load endpoint={endpoint} title={title} />
+  <TableReact client:load endpoint={endpoint} filterConfig={filterConfig}/>
 </div>

@@ -4,6 +4,12 @@ import API from '@utils/api';
 
 const endpoint = API.GET_MOTORCYCLES;
 const title = 'Motorcycles';
+
+const filterConfig = [
+  { field: 'absBrake', label: 'ABS Brake' },
+  { field: 'helmetIncluded', label: 'Helmet Included' },
+  // Añade más filtros según sea necesario
+];
 ---
 <div class="p-4 m-4 rounded-lg shadow-lg">
   <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
@@ -11,5 +17,5 @@ const title = 'Motorcycles';
   </h2>
 </div>
 <div class="ps-4 ms-4 rounded-lg shadow-lg">
-  <TableReact client:load endpoint={endpoint} title={title} />
+  <TableReact client:load endpoint={endpoint} filterConfig={filterConfig}/>
 </div>

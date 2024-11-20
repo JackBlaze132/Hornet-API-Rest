@@ -1,41 +1,53 @@
 import React from 'react';
 import { Checkbox, CheckboxGroup } from '@nextui-org/react';
-import {Icon} from '@iconify/react'
+import { Icon } from '@iconify/react';
 
-interface FilterComponentProps {
+interface FilterConfig {
+  field: string;
   label: string;
-  filters: { [key: string]: any };
-  onFilterChange: (filters: { [key: string]: any }) => void;
 }
 
-const FilterComponent: React.FC<FilterComponentProps> = ({ filters, onFilterChange, label }) => {
-  const handleCheckboxChange = (selectedValues: string[]) => {
+interface FilterComponentProps {
+  filters: { [key: string]: any };
+  onFilterChange: (filters: { [key: string]: any }) => void;
+  filterConfig: FilterConfig[]; // Recepción de la configuración de filtros
+}
+
+const FilterComponent: React.FC<FilterComponentProps> = ({ filters, onFilterChange, filterConfig }) => {
+  const handleCheckboxChange = (field: string, selectedValues: string[]) => {
     const newFilters = { ...filters };
     if (selectedValues.includes('yes')) {
-      newFilters.absBrake = true;
+      newFilters[field] = true;
     } else if (selectedValues.includes('no')) {
-      newFilters.absBrake = false;
+      newFilters[field] = false;
     } else {
-      newFilters.absBrake = null;
+      delete newFilters[field];
     }
     onFilterChange(newFilters);
   };
 
   return (
     <div className="mb-4 bg-content1 rounded-large p-4 mr-4 w-52">
-      <div className='flex items-center'><Icon className='me-2' icon="tabler:filter" /><h4 className='text-lg font-regular'> Filters</h4></div>
+      <div className='flex items-center'>
+        <Icon className='me-2' icon="tabler:filter" />
+        <h4 className='text-lg font-regular'>Filters</h4>
+      </div>
       <div className='ms-6'>
-        <CheckboxGroup
+        {filterConfig.map(({ field, label }) => (
+          <CheckboxGroup
+            key={field}
             label={label}
             value={
-            filters.absBrake === true ? ['yes'] : 
-            filters.absBrake === false ? ['no'] : []
+              filters[field] === true ? ['yes'] :
+              filters[field] === false ? ['no'] :
+              []
             }
-            onChange={handleCheckboxChange}
-        >
+            onChange={(selected) => handleCheckboxChange(field, selected)}
+          >
             <Checkbox value="yes">Yes</Checkbox>
             <Checkbox value="no">No</Checkbox>
-        </CheckboxGroup>
+          </CheckboxGroup>
+        ))}
       </div>  
     </div>
   );
