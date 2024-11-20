@@ -34,7 +34,6 @@
             this.btnList = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.dataGridAutomobile = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.idTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.brandTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +41,7 @@
             this.absTableColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.bodyworkName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.arrivalDateTableColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAutomobile)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,15 +73,15 @@
             "YES",
             "NOT"});
             this.checkedListBox2.Location = new System.Drawing.Point(41, 163);
-            this.checkedListBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkedListBox2.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(91, 19);
+            this.checkedListBox2.Size = new System.Drawing.Size(91, 34);
             this.checkedListBox2.TabIndex = 30;
             // 
             // btnList
             // 
             this.btnList.Location = new System.Drawing.Point(496, 383);
-            this.btnList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnList.Margin = new System.Windows.Forms.Padding(2);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(98, 35);
             this.btnList.TabIndex = 29;
@@ -92,7 +92,7 @@
             // btnFilter
             // 
             this.btnFilter.Location = new System.Drawing.Point(41, 256);
-            this.btnFilter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFilter.Margin = new System.Windows.Forms.Padding(2);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(90, 24);
             this.btnFilter.TabIndex = 28;
@@ -118,16 +118,6 @@
             this.dataGridAutomobile.RowHeadersWidth = 51;
             this.dataGridAutomobile.Size = new System.Drawing.Size(823, 278);
             this.dataGridAutomobile.TabIndex = 25;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(335, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 25);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "List Automobile";
             // 
             // idTableColumn
             // 
@@ -192,6 +182,16 @@
             this.arrivalDateTableColumn.Name = "arrivalDateTableColumn";
             this.arrivalDateTableColumn.ReadOnly = true;
             this.arrivalDateTableColumn.Width = 125;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(335, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(174, 25);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "List Automobile";
             // 
             // GUIListAutomobile
             // 
