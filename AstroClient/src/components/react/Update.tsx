@@ -97,12 +97,14 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
 
   return (
     <div>
+      
       <Input
         type="text"
         placeholder="Search by ID"
         value={searchId}
         onChange={handleSearchChange}
       />
+      <Spacer y={1} />
       <Button onClick={handleSearch}><Icon icon="tabler:search" className="icon" />Search</Button>
       <Spacer y={1} />
       <form onSubmit={handleSubmit}>
@@ -158,7 +160,7 @@ const UpdateForm: React.FC<UpdateFormProps> = ({ endpoint, fields, searchEndpoin
             <Spacer y={1} />
           </div>
         ))}
-        <Button type="submit" color='primary'>Update</Button>
+        <Button type="submit" color='primary'><Icon icon="tabler:refresh" /> Update</Button>
       </form>
     </div>
   );

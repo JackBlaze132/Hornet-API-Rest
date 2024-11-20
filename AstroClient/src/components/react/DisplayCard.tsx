@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Card, CardHeader, CardBody, CardFooter, Input, Button, Spacer } from '@nextui-org/react';
+import { Card, CardHeader, CardBody, CardFooter, Input, Button, Spacer, Divider } from '@nextui-org/react';
 import API from '@utils/api'; // Ajusta la ruta según sea necesario
 import Formatter from '@utils/formatter';
+import {Icon} from '@iconify/react'
 
 interface DisplayCardProps {
   endpoint: string;
@@ -41,13 +42,15 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ endpoint }) => {
         value={searchId}
         onChange={handleSearchChange}
       />
-      <Button onClick={handleSearch}>Search</Button>
+      <Spacer y={1} />
+      <Button onClick={handleSearch}><Icon icon="tabler:search" className="icon" />Search</Button>
       <Spacer y={1} />
       {data ? (
         <Card>
           <CardHeader>
-            <h4>Details</h4>
+            <h4 className='text-lg'>Details</h4>
           </CardHeader>
+          <Divider />
           <CardBody>
             {Object.keys(data).map((key) => {
               if (key === 'bodywork' && data[key]){

@@ -124,7 +124,9 @@ const Form: React.FC<FormProps> = ({ endpoint, fields }) => {
           <Spacer y={1} />
         </div>
       ))}
+      
       <Button type="submit" color="warning">
+        <Icon icon="tabler:send-2" />
         Submit
       </Button>
     </form>
