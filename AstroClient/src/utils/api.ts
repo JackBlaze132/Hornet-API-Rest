@@ -65,11 +65,17 @@ class API{
     public getFullUrl(endpoint: string): string {
       return this.API_BASE_URL + endpoint;
     }
+
+
     public async get(endpoint: string, params?: { [key: string]: any }) {
       try {
         const url = new URL(this.getFullUrl(endpoint));
         if (params) {
-          Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+          Object.keys(params).forEach(key => {
+            if (params[key] !== null) {
+              url.searchParams.append(key, params[key]);
+            }
+          });
         }
         const response = await fetch(url.toString(), {
           method: 'GET',

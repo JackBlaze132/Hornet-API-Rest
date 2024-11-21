@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Icon} from '@iconify/react'
-import { Input, Button, Spacer, Card, CardHeader, CardBody } from '@nextui-org/react';
+import { Input, Button, Spacer, Card, CardHeader, CardBody, Divider } from '@nextui-org/react';
 import API from '@utils/api'; // Asegúrate de importar correctamente la clase API
 import Formatter from '@utils/formatter'; // Asegúrate de importar correctamente la clase Formatter
 
@@ -60,14 +60,16 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ endpoint, enddelete }) => {
         value={searchId}
         onChange={handleSearchChange}
       />
-      <Button onClick={handleSearch}>Search</Button>
+      <Spacer y={1} />
+      <Button onClick={handleSearch}><Icon icon="tabler:search" className="icon" />Search</Button>
       <Spacer y={1} />
       {data ? (
         <div>
           <Card>
             <CardHeader>
-              <h4>Details</h4>
+              <h4 className='text-lg'>Details</h4>
             </CardHeader>
+            <Divider />
             <CardBody>
               {Object.keys(data).map((key) => {
                 if (key === 'bodyworks' && Array.isArray(data[key]) && data[key].length > 0) {

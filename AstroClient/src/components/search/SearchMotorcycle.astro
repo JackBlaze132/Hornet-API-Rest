@@ -5,12 +5,11 @@ import api from '@utils/api';
 const endpoint = '/api/objects'; // Ajusta el endpoint según sea necesario
 ---
 
-<html>
-  <head>
-    <title>Display Card</title>
-  </head>
-  <body>
-    <h1>Display Card Example</h1>
+<div class="p-4 m-4 rounded-lg shadow-lg">
+  <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
+    Search Motorcycle
+  </h2>
+</div>
+<div class="ps-4 ms-4 rounded-lg shadow-lg w-[32rem]">
     <DisplayCardReact endpoint={api.SEARCH_MOTORCYCLES} client:load />
-  </body>
-</html>
+</div>;

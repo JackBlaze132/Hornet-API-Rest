@@ -10,7 +10,11 @@ const fields = [
   { name: 'hasSunroof', type: 'checkbox', placeholder: 'Has Sunroof' },
 ];
 ---
-
 <div class="p-4 m-4 rounded-lg shadow-lg">
+  <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
+    Register Boywork
+  </h2>
+</div>
+<div class="ps-4 ms-4 rounded-lg shadow-lg w-[32rem]">
   <Form client:load endpoint={endpoint} fields={fields} />
 </div>

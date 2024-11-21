@@ -5,12 +5,11 @@ import API from '@utils/api';
 const endpoint = '/api/objects'; // Ajusta el endpoint según sea necesario
 ---
 
-<html>
-  <head>
-    <title>Display Card</title>
-  </head>
-  <body>
-    <h1>Display Card Example</h1>
+<div class="p-4 m-4 rounded-lg shadow-lg">
+  <h2 style={{ fontSize: '2rem', fontWeight: 'bold', color: 'white' }}>
+    Search Bodywork
+  </h2>
+</div>
+<div class="ps-4 ms-4 rounded-lg shadow-lg w-[32rem]">
     <DisplayCardReact endpoint={API.SEARCH_BODYWORKS} client:load />
-  </body>
-</html>
+</div>

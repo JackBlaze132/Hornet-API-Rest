@@ -73,7 +73,7 @@ public class BodyworkController {
     @PutMapping("/update/{id}")
     public ResponseEntity<Bodywork> updateBodywork(
             @PathVariable("id") int id,
-            @Valid @RequestBody Bodywork bodywork, BindingResult result) {
+            @RequestBody Bodywork bodywork, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
