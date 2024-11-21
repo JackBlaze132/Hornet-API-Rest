@@ -20,21 +20,18 @@ public class AutomobileService {
     @Autowired
     private BodyworkService bodyworkService;
 
-    public Optional<Map<String, Object>> getAutomobile(int id, String snid) {
-        return automobileRepository.findById(id)
-                .map(auto -> {
-
-                    Map<String, Object> response = new LinkedHashMap<>();
-                    response.put("id", auto.getId());
-                    response.put("brand", auto.getBrand());
-                    response.put("price", auto.getPrice());
-                    response.put("snid", auto.getSnid());
-                    response.put("absBrake", auto.isAbsBrake());
-                    response.put("bodywork", auto.getBodywork()); // Cambiado para usar un solo Bodywork
-                    response.put("arrivalDate", auto.getArrivalDate());
-
-                    return response;
-                });
+    public List<Map<String, Object>> getAutomobile(int id, String snid) {
+        return automobileRepository.findByIdAndSnid(id, snid).stream().map(auto -> {
+            Map<String, Object> response = new LinkedHashMap<>();
+            response.put("id", auto.getId());
+            response.put("brand", auto.getBrand());
+            response.put("price", auto.getPrice());
+            response.put("snid", auto.getSnid());
+            response.put("absBrake", auto.isAbsBrake());
+            response.put("bodywork", auto.getBodywork());
+            response.put("arrivalDate", auto.getArrivalDate());
+            return response;
+        }).toList();
     }
 
     public List<Map<String, Object>> getAutomobiles(Boolean absBrake) {
