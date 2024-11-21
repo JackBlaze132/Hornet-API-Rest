@@ -16,4 +16,9 @@ public interface AutomobileRepository extends JpaRepository<Automobile, Integer>
         @Query("SELECT a FROM Automobile a WHERE (:absBrake IS NULL OR a.absBrake = :absBrake)")
         List<Automobile> findByAbsBrake(@Param("absBrake") Boolean absBrake);
 
+        @Query("SELECT a FROM Automobile a " +
+                "WHERE (:id = 0 OR a.id = :id) " +
+                "AND (:snid IS NULL OR a.snid = :snid)")
+        Optional<Automobile> findOneByIdAndSnid(@Param("id") int id, @Param("snid") String snid);
+
 }

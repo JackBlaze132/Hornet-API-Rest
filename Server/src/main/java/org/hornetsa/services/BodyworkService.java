@@ -24,12 +24,11 @@ public class BodyworkService {
         return bodyworkRepository.findAll();
     }
 
-    public Bodywork findBodyworkById(int id) {
-        return bodyworkRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Bodywork not found"));
-    }
-
     public Bodywork addBodywork(Bodywork bodywork) {
+        if (bodyworkRepository.existsById(bodywork.getId())) {
+            throw new IllegalArgumentException("Bodywork ID already exists.");
+        }
+
         return bodyworkRepository.save(bodywork);
     }
 
@@ -54,11 +53,10 @@ public class BodyworkService {
         return bodyworkRepository.findByHasSunroof(hasSunroof);
     }
 
-    // Nuevo método para buscar Bodyworks por ID y/o nombre
-    public List<Bodywork> getBodyworks(int id, String name) {
-        return bodyworkRepository.findAll().stream()
-                .filter(b -> (id == -1 || b.getId() == id) &&
-                        (name == null || b.getName().equalsIgnoreCase(name)))
-                .collect(Collectors.toList());
+    public Bodywork getBodywork(int id, String name) {
+        return bodyworkRepository.findOneByIdAndName(
+                id, (name == null || name.trim().isEmpty()) ? null : name
+        ).orElse(null); // Devuelve null si no hay resultado
     }
+
 }

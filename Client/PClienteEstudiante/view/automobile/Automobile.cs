@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PClienteEstudiante.view.automobile
+namespace PClienteEstudiante.view.searchedAutomobile
 {
     internal class Automobile
     {

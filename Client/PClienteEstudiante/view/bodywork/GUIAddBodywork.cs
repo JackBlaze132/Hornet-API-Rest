@@ -38,7 +38,7 @@ namespace PClienteEstudiante.view.bodywork
                 }
                 else
                 {
-                    MessageBox.Show("Error adding motorcycle: " + response.StatusDescription);
+                    MessageBox.Show("Error adding bodywork: " + response.StatusDescription);
                 }
 
             }

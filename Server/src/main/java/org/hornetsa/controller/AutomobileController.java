@@ -44,29 +44,24 @@ public class AutomobileController {
 
     @GetMapping("/search")
     public ResponseEntity<Map<String, Object>> searchAutomobile(
-            @RequestParam("id") Optional<Integer> id,
-            @RequestParam("snid") Optional<String> snid) {
+            @RequestParam(value = "id", defaultValue = "0") int id,
+            @RequestParam(value = "snid", required = false) String snid) {
 
-        Optional<Map<String, Object>> automobile = automobileService.getAutomobile(id.orElse(-1), snid.orElse(null));
+        Optional<Map<String, Object>> automobile = automobileService.getAutomobile(id, snid);
 
-        if (automobile.isEmpty()) {
+        if (automobile == null) {
             return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(automobile.get());
     }
 
+
     @PostMapping("/add")
     public ResponseEntity<Automobile> addAutomobile(
             @Valid @RequestBody Automobile automobile, BindingResult result) {
         if (result.hasErrors()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
-        }
-
-        try {
-            automobileService.postAutomobile(automobile);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
         }
 
         return ResponseEntity.ok(automobileService.postAutomobile(automobile));

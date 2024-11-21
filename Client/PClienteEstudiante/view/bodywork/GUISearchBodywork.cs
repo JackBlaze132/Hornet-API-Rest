@@ -6,56 +6,53 @@ using RestSharp;
 
 namespace PClienteEstudiante.view.bodywork
 {
-    // This form provides functionality to search for bodywork records by ID or Name using a REST API.
     public partial class GUISearchBodywork : Form
     {
-        private Bodywork searchedBodywork; // Stores the searched bodywork object.
+        private Bodywork searchedBodywork;
 
         public GUISearchBodywork()
         {
             InitializeComponent();
         }
 
-        // Event handler for the "Search" button.
-        // Sends a GET request to the REST API to search for a bodywork by ID or Name.
         private void btnSearchBody_Click(object sender, EventArgs e)
         {
-            string id = txtIdBody.Text;
-            string name = txtNameBody.Text;
+            string id = txtIdBody.Text.Trim();
+            string name = txtNameBody.Text.Trim();
 
-            // Validate that at least one field is provided.
             if (string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(name))
             {
                 MessageBox.Show("Please enter either an ID or Name.");
                 return;
             }
 
+            Cursor = Cursors.WaitCursor;
+
             try
             {
-                var options = new RestClientOptions("http://localhost:8090");
-                var client = new RestClient(options);
-                RestRequest request;
+                var client = new RestClient("http://localhost:8090");
+                string query = "";
 
-                // Determine whether to search by ID or Name.
-                if (!string.IsNullOrWhiteSpace(id))
-                {
-                    request = new RestRequest($"/bodyworks/search?id={id}", Method.Get);
-                }
-                else
-                {
-                    request = new RestRequest($"/bodyworks/search?name={name}", Method.Get);
-                }
+                // Agregar parámetros dinámicamente
+                if (!string.IsNullOrWhiteSpace(id)) query += $"id={id}&";
+                if (!string.IsNullOrWhiteSpace(name)) query += $"name={name}";
 
+                var request = new RestRequest($"/bodyworks/search?{query.TrimEnd('&')}", Method.Get);
                 var response = client.Execute(request);
 
                 if (response.IsSuccessful)
                 {
-                    // Deserialize the response to a Bodywork object.
-                    searchedBodywork = JsonSerializer.Deserialize<Bodywork>(response.Content);
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true // Asegura que coincida con las propiedades del modelo
+                    };
+
+                    // Deserializar a una lista si el endpoint soporta múltiples resultados
+                    searchedBodywork = JsonSerializer.Deserialize<Bodywork>(response.Content, options);
 
                     if (searchedBodywork != null)
                     {
-                        // Display the bodywork details in the corresponding text boxes.
+                        // Mostrar el primer resultado en los campos (puedes ajustar según tus necesidades)
                         txtIdBody.Text = searchedBodywork.id.ToString();
                         txtNameBody.Text = searchedBodywork.name;
                         boxSunroof.Checked = searchedBodywork.hasSunroof;
@@ -67,20 +64,31 @@ namespace PClienteEstudiante.view.bodywork
                 }
                 else
                 {
-                    MessageBox.Show("Failed to retrieve the bodywork.");
+                    // Mostrar errores específicos
+                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    {
+                        MessageBox.Show("No bodywork found for the provided criteria.");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Error: {response.StatusDescription}");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // Handle and display any exception that occurs during the request.
                 MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
             }
         }
 
         private void btnClearBody_Click(object sender, EventArgs e)
         {
-            txtIdBody.Text = string.Empty;
-            txtNameBody.Text = string.Empty;
+            txtIdBody.Clear();
+            txtNameBody.Clear();
             boxSunroof.Checked = false;
         }
     }

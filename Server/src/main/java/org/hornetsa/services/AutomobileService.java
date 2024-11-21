@@ -21,21 +21,23 @@ public class AutomobileService {
     private BodyworkService bodyworkService;
 
     public Optional<Map<String, Object>> getAutomobile(int id, String snid) {
-        return automobileRepository.findById(id)
-                .map(auto -> {
+        return automobileRepository.findOneByIdAndSnid(
+                id, (snid == null || snid.trim().isEmpty()) ? null : snid
+        ) .map(auto -> {
 
-                    Map<String, Object> response = new LinkedHashMap<>();
-                    response.put("id", auto.getId());
-                    response.put("brand", auto.getBrand());
-                    response.put("price", auto.getPrice());
-                    response.put("snid", auto.getSnid());
-                    response.put("absBrake", auto.isAbsBrake());
-                    response.put("bodywork", auto.getBodywork()); // Cambiado para usar un solo Bodywork
-                    response.put("arrivalDate", auto.getArrivalDate());
+            Map<String, Object> response = new LinkedHashMap<>();
+            response.put("id", auto.getId());
+            response.put("brand", auto.getBrand());
+            response.put("price", auto.getPrice());
+            response.put("snid", auto.getSnid());
+            response.put("absBrake", auto.isAbsBrake());
+            response.put("bodywork", auto.getBodywork()); // Cambiado para usar un solo Bodywork
+            response.put("arrivalDate", auto.getArrivalDate());
 
-                    return response;
-                });
+            return response;
+        }); // Devuelve null si no hay resultado
     }
+
 
     public List<Map<String, Object>> getAutomobiles(Boolean absBrake) {
         List<Automobile> automobiles;
@@ -65,6 +67,9 @@ public class AutomobileService {
 
 
     public Automobile postAutomobile(Automobile automobile) {
+        if (automobileRepository.existsById(automobile.getId())) {
+            throw new IllegalArgumentException("Automobile ID already exists.");
+        }
         return automobileRepository.save(automobile);
     }
 

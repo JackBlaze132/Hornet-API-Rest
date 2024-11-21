@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using PClienteEstudiante.view.bodywork;
 using RestSharp;
 
-namespace PClienteEstudiante.view.automobile
+namespace PClienteEstudiante.view.searchedAutomobile
 {
     public partial class GUIListAutomobile : Form
     {

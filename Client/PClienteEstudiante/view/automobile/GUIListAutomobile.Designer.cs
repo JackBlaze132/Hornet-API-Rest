@@ -1,4 +1,4 @@
-﻿namespace PClienteEstudiante.view.automobile
+﻿namespace PClienteEstudiante.view.searchedAutomobile
 {
     partial class GUIListAutomobile
     {
