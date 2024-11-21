@@ -76,6 +76,9 @@ namespace PClienteEstudiante.view.automobile
         {
             try
             {
+                var options = new RestClientOptions("http://localhost:8090");
+                var client = new RestClient(options);
+                var request = new RestRequest("/automobiles/add", Method.Post);
                 // Get the selected bodywork from the ComboBox.
                 Bodywork selectedBodywork = (Bodywork)comboBoxBodyAuto.SelectedItem;
 
@@ -90,10 +93,6 @@ namespace PClienteEstudiante.view.automobile
                     bodywork = selectedBodywork.id == 0 ? null : selectedBodywork, // Add the selected bodywork object
                     arrivalDate = datePickerAuto.Value
                 };
-
-                var options = new RestClientOptions("http://localhost:8090");
-                var client = new RestClient(options);
-                var request = new RestRequest("/automobiles/add", Method.Post);
 
                 // Serialize the automobile object, sending only the IDs of the bodyworks.
                 request.AddJsonBody(automobile);
