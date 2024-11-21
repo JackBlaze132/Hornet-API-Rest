@@ -42,16 +42,17 @@ public class BodyworkController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<Bodywork> searchBodywork(
-            @RequestParam("id") Optional<Integer> id,
-            @RequestParam("name") Optional<String> name) {
+    public ResponseEntity<List<Bodywork>> searchBodywork(
+            @RequestParam(value = "id", defaultValue = "0") int id,
+            @RequestParam(value = "name", required = false) String name) {
 
-        Bodywork bodywork = bodyworkService.getBodyworks(id.orElse(-1), name.orElse(null))
-                .stream().findFirst().orElse(null);
+        List<Bodywork> bodyworks = bodyworkService.getBodyworks(id, name);
 
-        if (bodywork == null) return ResponseEntity.notFound().build();
+        if (bodyworks.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
-        return ResponseEntity.ok(bodywork);
+        return ResponseEntity.ok(bodyworks);
     }
 
     @PostMapping("/add")

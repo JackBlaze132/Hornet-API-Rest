@@ -55,9 +55,9 @@ public class BodyworkService {
 
     // Nuevo método para buscar Bodyworks por ID y/o nombre
     public List<Bodywork> getBodyworks(int id, String name) {
-        return bodyworkRepository.findAll().stream()
-                .filter(b -> (id == -1 || b.getId() == id) &&
-                        (name == null || b.getName().equalsIgnoreCase(name)))
-                .collect(Collectors.toList());
+        // Envía directamente los valores de id y name
+        return bodyworkRepository.findByIdAndName(
+                id, (name == null || name.trim().isEmpty()) ? null : name
+        );
     }
 }
