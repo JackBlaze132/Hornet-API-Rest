@@ -42,18 +42,19 @@ public class BodyworkController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Bodywork>> searchBodywork(
+    public ResponseEntity<Bodywork> searchBodywork(
             @RequestParam(value = "id", defaultValue = "0") int id,
             @RequestParam(value = "name", required = false) String name) {
 
-        List<Bodywork> bodyworks = bodyworkService.getBodyworks(id, name);
+        Bodywork bodywork = bodyworkService.getBodywork(id, name);
 
-        if (bodyworks.isEmpty()) {
+        if (bodywork == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(bodyworks);
+        return ResponseEntity.ok(bodywork);
     }
+
 
     @PostMapping("/add")
     public ResponseEntity<Bodywork> addBodywork(

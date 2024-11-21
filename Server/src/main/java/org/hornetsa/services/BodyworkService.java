@@ -53,11 +53,10 @@ public class BodyworkService {
         return bodyworkRepository.findByHasSunroof(hasSunroof);
     }
 
-    // Nuevo método para buscar Bodyworks por ID y/o nombre
-    public List<Bodywork> getBodyworks(int id, String name) {
-        // Envía directamente los valores de id y name
-        return bodyworkRepository.findByIdAndName(
+    public Bodywork getBodywork(int id, String name) {
+        return bodyworkRepository.findOneByIdAndName(
                 id, (name == null || name.trim().isEmpty()) ? null : name
-        );
+        ).orElse(null); // Devuelve null si no hay resultado
     }
+
 }

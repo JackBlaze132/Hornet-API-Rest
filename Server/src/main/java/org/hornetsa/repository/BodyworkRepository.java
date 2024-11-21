@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BodyworkRepository extends JpaRepository<Bodywork, Integer> {
@@ -17,6 +18,7 @@ public interface BodyworkRepository extends JpaRepository<Bodywork, Integer> {
     @Query("SELECT b FROM Bodywork b " +
             "WHERE (:id = 0 OR b.id = :id) " +
             "AND (:name IS NULL OR b.name = :name)")
-    List<Bodywork> findByIdAndName(@Param("id") int id, @Param("name") String name);
+    Optional<Bodywork> findOneByIdAndName(@Param("id") int id, @Param("name") String name);
+
 
 }

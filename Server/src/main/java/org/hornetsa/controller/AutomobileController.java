@@ -43,18 +43,19 @@ public class AutomobileController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Map<String, Object>>> searchAutomobile(
+    public ResponseEntity<Map<String, Object>> searchAutomobile(
             @RequestParam(value = "id", defaultValue = "0") int id,
             @RequestParam(value = "snid", required = false) String snid) {
 
-        List<Map<String, Object>> automobiles = automobileService.getAutomobile(id, snid);
+        Optional<Map<String, Object>> automobile = automobileService.getAutomobile(id, snid);
 
-        if (automobiles.isEmpty()) {
+        if (automobile == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(automobiles);
+        return ResponseEntity.ok(automobile.get());
     }
+
 
     @PostMapping("/add")
     public ResponseEntity<Automobile> addAutomobile(
