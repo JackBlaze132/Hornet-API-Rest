@@ -36,55 +36,58 @@ namespace PClienteEstudiante.view.automobile
 
         private void btnSearchAutomobile_Click(object sender, EventArgs e)
         {
+            string id = txtIdAuto.Text.Trim();
+            string snid = txtSnidAuto.Text.Trim();
+
+            // Validar que al menos uno de los campos esté lleno
+            if (string.IsNullOrWhiteSpace(id) && string.IsNullOrWhiteSpace(snid))
+            {
+                MessageBox.Show("Please enter either an ID or SNID to search.");
+                ClearForm();
+                return;
+            }
+
+            Cursor = Cursors.WaitCursor;
+
             try
             {
-                // Validar que al menos uno de los dos campos esté lleno.
-                if (string.IsNullOrWhiteSpace(txtIdAuto.Text) && string.IsNullOrWhiteSpace(txtSnidAuto.Text))
-                {
-                    MessageBox.Show("Please enter either an ID or SNID to search.");
-                    ClearForm();
-                    return;
-                }
+                var client = new RestClient("http://localhost:8090");
+                string query = "";
 
-                // Definir el parámetro de búsqueda.
-                RestRequest request;
-                var options = new RestClientOptions("http://localhost:8090");
-                var client = new RestClient(options);
-
-                // Si se proporciona el ID, validar que sea numérico y crear la solicitud con ID.
-                if (!string.IsNullOrWhiteSpace(txtIdAuto.Text))
+                // Construir el query dinámicamente
+                if (!string.IsNullOrWhiteSpace(id))
                 {
-                    if (!int.TryParse(txtIdAuto.Text, out int automobileId))
+                    if (!int.TryParse(id, out int automobileId))
                     {
                         MessageBox.Show("The ID must be a numeric value.");
                         ClearForm();
                         return;
                     }
-
-                    request = new RestRequest($"/automobiles/search?id={automobileId}", Method.Get);
+                    query += $"id={automobileId}&";
                 }
-                else
+
+                if (!string.IsNullOrWhiteSpace(snid))
                 {
-                    // Si no hay ID, crear la solicitud con el SNID.
-                    string snid = txtSnidAuto.Text;
-                    request = new RestRequest($"/automobiles/search?snid={snid}", Method.Get);
+                    query += $"snid={snid}";
                 }
 
-                var response = client.Execute(request); // Ejecutar la solicitud GET.
+                var request = new RestRequest($"/automobiles/search?{query.TrimEnd('&')}", Method.Get);
+                var response = client.Execute(request);
 
                 if (response.IsSuccessful)
                 {
-                    var jsonOptions = new JsonSerializerOptions
+                    var options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true // Ignorar mayúsculas y minúsculas en los nombres de propiedades.
+                        PropertyNameCaseInsensitive = true // Ignorar mayúsculas y minúsculas en los nombres de propiedades
                     };
 
-                    // Deserializar la respuesta en un objeto Automobile.
-                    var automobile = JsonSerializer.Deserialize<Automobile>(response.Content, jsonOptions);
+                    // Deserializar la respuesta en una lista de automóviles
+                    var automobiles = JsonSerializer.Deserialize<List<Automobile>>(response.Content, options);
 
-                    if (automobile != null)
+                    if (automobiles != null && automobiles.Count > 0)
                     {
-                        // Llenar los campos del formulario con los datos del automóvil.
+                        // Mostrar el primer resultado
+                        var automobile = automobiles[0];
                         txtIdAuto.Text = automobile.id.ToString();
                         txtBrandAuto.Text = automobile.brand;
                         txtPriceAuto.Text = automobile.price.ToString();
@@ -105,10 +108,14 @@ namespace PClienteEstudiante.view.automobile
             }
             catch (Exception ex)
             {
-                // Manejo de excepciones durante la solicitud.
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
+            finally
+            {
+                Cursor = Cursors.Default;
+            }
         }
+
 
         // Clear all input fields on the form.
         private void ClearForm()
