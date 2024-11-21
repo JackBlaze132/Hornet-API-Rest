@@ -63,12 +63,6 @@ public class AutomobileController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, this.formatMessage(result));
         }
 
-        try {
-            automobileService.postAutomobile(automobile);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
         return ResponseEntity.ok(automobileService.postAutomobile(automobile));
     }
 

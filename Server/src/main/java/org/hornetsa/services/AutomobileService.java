@@ -65,6 +65,9 @@ public class AutomobileService {
 
 
     public Automobile postAutomobile(Automobile automobile) {
+        if (automobileRepository.existsById(automobile.getId())) {
+            throw new IllegalArgumentException("Automobile ID already exists.");
+        }
         return automobileRepository.save(automobile);
     }
 

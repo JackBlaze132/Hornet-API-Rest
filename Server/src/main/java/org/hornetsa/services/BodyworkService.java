@@ -24,12 +24,11 @@ public class BodyworkService {
         return bodyworkRepository.findAll();
     }
 
-    public Bodywork findBodyworkById(int id) {
-        return bodyworkRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Bodywork not found"));
-    }
-
     public Bodywork addBodywork(Bodywork bodywork) {
+        if (bodyworkRepository.existsById(bodywork.getId())) {
+            throw new IllegalArgumentException("Bodywork ID already exists.");
+        }
+
         return bodyworkRepository.save(bodywork);
     }
 
