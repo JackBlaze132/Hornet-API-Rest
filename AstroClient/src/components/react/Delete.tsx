@@ -72,10 +72,10 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ endpoint, enddelete }) => {
             <Divider />
             <CardBody>
               {Object.keys(data).map((key) => {
-                if (key === 'bodyworks' && Array.isArray(data[key]) && data[key].length > 0) {
+                if (key === 'bodywork' && data[key]) {
                   return (
                     <div key={key}>
-                      <strong>Bodywork:</strong> {data[key][0].name}
+                      <strong>Bodywork:</strong> {data[key].name}
                     </div>
                   );
                 }
