@@ -11,7 +11,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PClienteEstudiante.view.automobile
+namespace PClienteEstudiante.view.searchedAutomobile
 {
     public partial class GUIUpdateAutomobile : Form
     {

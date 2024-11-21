@@ -48,12 +48,11 @@ namespace PClienteEstudiante.view.bodywork
                     };
 
                     // Deserializar a una lista si el endpoint soporta múltiples resultados
-                    var bodyworks = JsonSerializer.Deserialize<List<Bodywork>>(response.Content, options);
+                    searchedBodywork = JsonSerializer.Deserialize<Bodywork>(response.Content, options);
 
-                    if (bodyworks != null && bodyworks.Count > 0)
+                    if (searchedBodywork != null)
                     {
                         // Mostrar el primer resultado en los campos (puedes ajustar según tus necesidades)
-                        searchedBodywork = bodyworks[0];
                         txtIdBody.Text = searchedBodywork.id.ToString();
                         txtNameBody.Text = searchedBodywork.name;
                         boxSunroof.Checked = searchedBodywork.hasSunroof;

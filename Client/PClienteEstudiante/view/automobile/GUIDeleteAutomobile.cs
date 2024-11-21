@@ -4,7 +4,7 @@ using System.Text.Json;
 using System.Windows.Forms;
 using RestSharp;
 
-namespace PClienteEstudiante.view.automobile
+namespace PClienteEstudiante.view.searchedAutomobile
 {
     public partial class GUIDeleteAutomobile : Form
     {

@@ -10,10 +10,11 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PClienteEstudiante.view.automobile
+namespace PClienteEstudiante.view.searchedAutomobile
 {
     public partial class GUISearchAutomobile : Form
     {
+        private Automobile searchedAutomobile;
         public GUISearchAutomobile()
         {
             InitializeComponent();
@@ -82,19 +83,18 @@ namespace PClienteEstudiante.view.automobile
                     };
 
                     // Deserializar la respuesta en una lista de automóviles
-                    var automobiles = JsonSerializer.Deserialize<List<Automobile>>(response.Content, options);
+                    searchedAutomobile = JsonSerializer.Deserialize<Automobile>(response.Content, options);
 
-                    if (automobiles != null && automobiles.Count > 0)
+                    if (searchedAutomobile != null)
                     {
                         // Mostrar el primer resultado
-                        var automobile = automobiles[0];
-                        txtIdAuto.Text = automobile.id.ToString();
-                        txtBrandAuto.Text = automobile.brand;
-                        txtPriceAuto.Text = automobile.price.ToString();
-                        txtSnidAuto.Text = automobile.snid;
-                        comboBoxBodyAuto.Text = automobile.bodywork != null ? automobile.bodywork.name : "Unassigned";
-                        boxABS.Checked = automobile.absBrake;
-                        datePickerAuto.Value = automobile.arrivalDate;
+                        txtIdAuto.Text = searchedAutomobile.id.ToString();
+                        txtBrandAuto.Text = searchedAutomobile.brand;
+                        txtPriceAuto.Text = searchedAutomobile.price.ToString();
+                        txtSnidAuto.Text = searchedAutomobile.snid;
+                        comboBoxBodyAuto.Text = searchedAutomobile.bodywork != null ? searchedAutomobile.bodywork.name : "Unassigned";
+                        boxABS.Checked = searchedAutomobile.absBrake;
+                        datePickerAuto.Value = searchedAutomobile.arrivalDate;
                     }
                     else
                     {
